@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="author" content="Víctor Cantera">
+        <link rel="icon" href="../assets/img/comercia_ico.png" type="image/x-icon"/ >
+        <title>Convertir Informe de CSV a Excel</title>
+
+        <!-- Bootstrap 4.3.1 -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="../assets/css/style.css">
+
+        <!-- Iconos -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    </head>
+    <body>
+        <!-- NAVBAR -->
+        <nav class="navbar navbar-expand-lg navbar-light navbar-rpdc mb-3">
+            <a class="navbar-brand">
+                <img src="../assets/img/log2.svg" width="30" height="30" class="img-fluid" alt="Logo Addon Payments">
+                <span class="addonNav">ADDON</span> <span>PAYMENTS</span>
+                <span class="d-none d-sm-none d-lg-inline d-xl-inline sdkNav">
+                    <span>
+                        /SDK
+                        <span class="barraNav">_</span>
+                        de
+                        <span class="barraNav">_</span>
+                        PHP
+                    </span>
+                </span>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+          </a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto pl-2 pr-2">
+                    <li class="nav-item ml-1 dropdown">
+                        <a class="nav-link pl-2 dropdown-toggle active" href="#" id="inicio" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Inicio
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item pl-2" href="../index.php">Índice</a>
+                            <a class="dropdown-item pl-2" href="errores.php">Errores de Addon Payments Tarjeta</a>
+                            <a class="dropdown-item pl-2 active" href="#">Convertir informe</a>
+                        </div>
+                    </li>
+                    <li class="nav-item ml-1 dropdown">
+                        <a class="nav-link pl-2 dropdown-toggle" href="#" id="01-Pagos_con_tarjeta" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Pagos con tarjeta
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <div class="dropdown-header text-center p-0">API</div>
+                            <hr class="m-0 p-0">
+                                <a class="dropdown-item pl-2" href="API/01%20-%20Pagos%20con%20tarjeta/01%20-%20Autorización/index.php">Autorización</a>
+                                <a class="dropdown-item pl-2" href="API/01%20-%20Pagos%20con%20tarjeta/01%20-%20Autorización/DatosDelCliente.php">Datos adicionales</a>
+                                <a class="dropdown-item pl-2" href="API/01%20-%20Pagos%20con%20tarjeta/02%20-%20OTB/index.php">OTB</a>
+                                <a class="dropdown-item pl-2" href="API/01%20-%20Pagos%20con%20tarjeta/03%20-%20Credit/index.php">Credit</a>
+                            <hr class="m-0 p-0">
+                            <div class="dropdown-header text-center p-0">HPP</div>
+                            <hr class="m-0 p-0">
+                                <a class="dropdown-item pl-2" href="HPP/01%20-%20Pagos%20con%20tarjeta/01%20-%20Autorizacion/index.php">Autorización</a>
+                                <a class="dropdown-item pl-2" href="HPP/01%20-%20Pagos%20con%20tarjeta/02%20-%20OTB/index.php">OTB</a>
+                                <a class="dropdown-item pl-2" href="HPP/01%20-%20Pagos%20con%20tarjeta/03%20-%20Pay%20By%20Link/index.php">Pay By Link</a>
+                                <a class="dropdown-item pl-2" href="HPP/01%20-%20Pagos%20con%20tarjeta/04%20-%20Auth%20con%20iframe/index.php">Iframe</a>
+                                <a class="dropdown-item pl-2" href="HPP/01%20-%20Pagos%20con%20tarjeta/05%20-%20Lightbox/index.php">Lightbox</a>
+                        </div>
+                    </li>
+                    <li class="nav-item ml-1 dropdown">
+                        <a class="nav-link pl-2 dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Almacenamiento de tarjeta
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <div class="dropdown-header text-center p-0">API</div>
+                            <hr class="m-0 p-0">
+                                <a class="dropdown-item pl-2" href="API/02%20-%20Almacenamiento%20de%20tarjeta/01%20-%20Crear%20un%20cliente/index.php">Crear un cliente</a>
+                                <a class="dropdown-item pl-2" href="API/02%20-%20Almacenamiento%20de%20tarjeta/02%20-%20Almacenar%20una%20tarjeta/index.php">Almacenar una tarjeta</a>
+                                <a class="dropdown-item pl-2" href="API/02%20-%20Almacenamiento%20de%20tarjeta/03%20-%20Editar%20tarjeta/index.php">Editar tarjetas</a>
+                                <a class="dropdown-item pl-2" href="API/02%20-%20Almacenamiento%20de%20tarjeta/04%20-%20Eliminar%20tarjeta/index.php">Eliminar tarjetas</a>
+                                <a class="dropdown-item pl-2" href="API/02%20-%20Almacenamiento%20de%20tarjeta/05%20-%20Auth/index.php">Autorización</a>
+                                <a class="dropdown-item pl-2" href="API/02%20-%20Almacenamiento%20de%20tarjeta/06%20-%20Credit/index.php">Credit</a>
+                                <a class="dropdown-item pl-2" href="API/02%20-%20Almacenamiento%20de%20tarjeta/07%20-%20DCC/index.php">Dynamic Currency Conversion</a>
+                            <hr class="m-0 p-0">
+                            <div class="dropdown-header text-center p-0">HPP</div>
+                            <hr class="m-0 p-0">
+                                <a class="dropdown-item pl-2" href="HPP/02%20-%20Almacenamiento%20de%20tarjeta/01%20-%20Crear%20un%20cliente/index.php">Crear un cliente</a>
+                                <a class="dropdown-item pl-2" href="HPP/02%20-%20Almacenamiento%20de%20tarjeta/02%20-%20Mostrar%20Tarjetas/index.php">Mostrar tarjetas</a>
+                        </div>
+                    </li>
+                    <li class="nav-item ml-1 dropdown">
+                        <a class="nav-link pl-2 dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Gestión de transacciones
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item pl-2" href="API/03%20-%20Gestión%20de%20transacciones/01%20-%20Capturar/index.php">Settle (Capturar)</a>
+                            <a class="dropdown-item pl-2" href="API/03%20-%20Gestión%20de%20transacciones/02%20-%20Rebate/index.php">Rebate (Devolución)</a>
+                            <a class="dropdown-item pl-2" href="API/03%20-%20Gestión%20de%20transacciones/03%20-%20Void/index.php">Void (Anular transacción)</a>
+                        </div>
+                    </li>
+
+                    <li class="nav-item ml-1 dropdown">
+                        <a class="nav-link pl-2 dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Filtro de fraude
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            
+                            <div class="dropdown-header text-center p-0">API</div>
+                            <hr class="m-0 p-0">
+                                <a class="dropdown-item pl-2"  href="API/05%20-%20Fraud%20Management/01%20-%20Fraud%20Filter/index.php">Filtro de fraude</a>
+                                <a class="dropdown-item pl-2"  href="API/05%20-%20Fraud%20Management/02%20-%20Address%20Verification">Verificación de dirección</a>
+                                <a class="dropdown-item pl-2"  href="API/05%20-%20Fraud%20Management/03%20-%20Hold">Retener transacción</a>
+                                <a class="dropdown-item pl-2"  href="API/05%20-%20Fraud%20Management/04%20-%20Lanzamiento">Lanzar transacción</a>
+                            <hr class="m-0 p-0">
+                            <div class="dropdown-header text-center p-0">HPP</div>
+                            <hr class="m-0 p-0">
+                                <a class="dropdown-item pl-2"  href="HPP/03%20-%20Fraud%20Management/01%20-%20Fraud%20Filter/index.php">Filtro de fraude</a>
+                        </div>
+                    </li>
+
+                    <li class="nav-item ml-1 dropdown">
+                        <a class="nav-link pl-2 dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            DCC
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <div class="dropdown-header text-center p-0">API</div>
+                            <hr class="m-0 p-0">
+                                <a class="dropdown-item pl-2"  href="API/04%20-%20DCC/01%20-%20Comprobar%20DCC/index.php">Comprobar DCC</a>
+                            <hr class="m-0 p-0">
+                            <div class="dropdown-header text-center p-0">HPP</div>
+                            <hr class="m-0 p-0">
+                                <a class="dropdown-item pl-2" href="HPP/04%20-%20DCC/index.php">Operación con DCC</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!-- /NAVBAR -->
+
+		<div class="container-fluid">
+			<div class="row">
+
+				<div class="col-lg-12">
+					<div class="row justify-content-around">
+						<div class="custom-file col-lg-10 mb-3 m-2 formulario" id="customFile">
+						  <input type="file" class="custom-file-input" id="csvFileInput" onchange="handleFiles(this.files)" accept=".csv">
+						  <label class="custom-file-label">Seleccione el informe con extensión ".csv"</label>
+						</div>
+					</div>
+				</div>
+
+				<br>
+
+                <div class="container-fluid col-lg-7 col-11 formulario p-3 mb-2 pt-4" id="desc" style="background-color: white;">
+                    <div>
+                        <h4 style="display: block;" class="text-center">
+                            Con esta herramienta puede convertir su informe de transacciones de Addon Payments con formato LibreOffice (.csv) a Excel (.xls).
+                        </h4>
+                        <br>
+                        <p class="text-left">
+                            Para generar el informe, debe realizar los siguientes pasos:
+                            <ul class="text-left" style="list-style: decimal;">
+                                <li>
+                                    Debe seleccionar el apartado "Transacciones" del <a target="_blank" href="https://admin.sandbox.addonpayments.com">panel de adminsitración de Addon Payments.</a>
+                                </li>
+                                <li>
+                                   Debe Realizar una búsqueda de las transacciones que desea generar en el informe.
+                                </li>
+                                <li>
+                                   Una vez cargadas las transacciones, debe seleccionar el botón azul situado arriba a la derecha que indica "GENERAR INFORME".
+                                </li>
+                                <li>
+                                   Puede encontrar todos sus informes generados en la sección "Informes" situada en la parte izquierda del menú desplegable.
+                                </li>
+                            </ul>
+
+                            <div>
+                                <p class="alert alert-danger">
+                                    <small>
+                                        Los datos del informe deben estar separados por comas (,). El informe que se genera desde el panel de administración de Addon Payments ya cumple este formato.
+                                    </small>
+                                </p>
+                            </div>
+                        </p>
+                    </div>
+                </div>
+
+				<div class="container-fluid col-lg-10 col-11 formulario mb-2" id="info" style="background-color: white;">
+					<div class="p-2 pt-4">
+
+                        <div class="col-lg-12 mb-4">
+                            <div class="row">
+
+                                <div class="col-lg-9 text-center d-flex align-content-around flex-wrap">
+                                    <h5>Se han encontrado <span id="datosMostrar"></span> transacciones</h5>
+                                </div>
+
+                                <div class="col-lg-3">
+                                    <div id="btnEx">
+                                        <button id="btnExport" class="btn btn-success btn-block" onclick="fnExcelReport();">Exportar a excel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="tabla" style="border: 1px solid #00000040; border-bottom: 0px;"></div>
+
+					</div>
+
+				</div>
+
+			</div>
+			<iframe id="txtArea1" style="display:none"></iframe>
+		</div>
+
+
+
+  		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    	<script>
+            $('#info').hide();
+
+			function handleFiles(files) {
+            	// Check for the various File API support.
+            	if (window.FileReader) {
+                	// FileReader are supported.
+                	getAsText(files[0]);
+            	} else {
+                	alert('FileReader no está soportado por este navegador.');
+            	}
+            }
+
+            function getAsText(fileToRead) {
+            	var reader = new FileReader();
+            	// Read file into memory as UTF-8      
+            	reader.readAsText(fileToRead);
+            	// Handle errors load
+            	reader.onload = loadHandler;
+            	reader.onerror = errorHandler;
+            }
+
+            function loadHandler(event) {
+             	var csv = event.target.result;
+            	processData(csv);
+            }
+
+            function processData(csv) {
+                var datos = csv.split(/\r?\n|\r/);
+                var table_data = '<table id="tabla2" class="text-center table-striped table table-hover table-responsive table-responsive-sm table-bordered table-sm">';
+                $('#datosMostrar').html(datos.length - 2);
+                for(var count = 0; count<datos.length; count++){
+                    var cell_data = datos[count].split(',');
+                    table_data += '<tr>';
+
+                    for(var cell_count=0; cell_count<cell_data.length; cell_count++){
+                        if(count === 0){
+                            table_data += '<th>'+cell_data[cell_count]+'</th>';
+                        }else{
+                            table_data += '<td>'+cell_data[cell_count].replace(/"/g, '')+'</td>';
+                        }
+                    }
+                    table_data += '</tr>';
+                }
+
+                table_data += '</table>';
+
+                $('#tabla').html(table_data);
+
+                $('#info').css('display', 'block');
+                $('#desc').css('display', 'none');
+
+            }
+
+            function errorHandler(evt) {
+            	if(evt.target.error.name == "NotReadableError") {
+                	alert("Canno't read file !");
+            	}
+            }
+
+			function fnExcelReport(){
+			    var tab_text="<table><tr>";
+			    var textRange; var j=0;
+			    tab = document.getElementById('tabla2'); // ID de la tabla
+
+			    for(j = 0 ; j < tab.rows.length ; j++){     
+			    	tab_text=tab_text+tab.rows[j].innerHTML+"</tr>";
+			    }
+
+			    tab_text=tab_text+"</table>";
+			    tab_text= tab_text.replace(/<A[^>]*>|<\/A>/g, ""); // En caso de que hubieran enlaces los eliminamos
+			    tab_text= tab_text.replace(/<img[^>]*>/gi,""); // En caso de que hubieran imágenes las eliminamos
+			    tab_text= tab_text.replace(/<input[^>]*>|<\/input>/gi, ""); // Eliminamos los parámetros de los inputs
+
+			    var ua = window.navigator.userAgent;
+			    var msie = ua.indexOf("MSIE "); 
+
+			    if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./)) { // Si es Internet Explorer
+			        txtArea1.document.open("txt/html","replace");
+			        txtArea1.document.write(tab_text);
+			        txtArea1.document.close();
+			        txtArea1.focus(); 
+			        sa=txtArea1.document.execCommand("SaveAs",true,"Reporte.xls");
+			    } else { // Otros navegadores
+			        sa = window.open('data:application/vnd.ms-excel;charset=utf-8,%EF%BB%BF'+ encodeURIComponent(tab_text));  
+			    }
+
+				return (sa);
+			}
+
+		</script>
+
+		
+    </body>
+</html>

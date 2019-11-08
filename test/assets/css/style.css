@@ -1,0 +1,273 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+body {
+    background-color: #e8eaed;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Scroll bar */
+    ::-webkit-scrollbar {
+        width: 12px;
+        height: 7px;
+    }
+
+    ::-webkit-scrollbar-button {
+        width: 0px;
+        height: 0px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #525965;
+        border: 0px none #ffffff;
+        border-radius: 0px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #525965;
+    }
+
+    ::-webkit-scrollbar-thumb:active {
+        background: #525965;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: transparent;
+        border: 0px none #ffffff;
+        border-radius: 50px;
+    }
+
+    ::-webkit-scrollbar-track:hover {
+        background: transparent;
+    }
+
+    ::-webkit-scrollbar-track:active {
+        background: transparent;
+    }
+
+    ::-webkit-scrollbar-corner {
+        background: transparent;
+    }
+/*-------------------------FIN-------------------------*/
+
+/* Navbar */
+    .navbar-rpdc {
+        min-height: 60px;
+        max-height: 60px;
+        background: #FFF;
+        border-bottom: 2px solid #d5d5d5;
+        -webkit-box-shadow: 0 0 20px #888;
+        box-shadow: 0 0 20px #888;
+        z-index: 10;
+    }
+
+    .navbar-light .navbar-nav .nav-link {
+        color: black;
+    }
+
+    .navbar-light .navbar-nav .nav-link:hover {
+        color: #ffffff;
+        text-decoration: none;
+        background-color: #1aa8e5;
+    }
+
+    .navbar-light .navbar-nav .nav-link.active{
+        color: white;
+        border-radius: 4px;
+    }
+
+    .dropdown-item:hover{
+        color: #ffffff;
+        text-decoration: none;
+        background-color: #1aa8e5;
+    }
+
+    .show {
+        background-color: white;
+        z-index: 1000;
+    }
+
+    .active {
+        color: white;
+        text-decoration: none;
+        background-color: #3a3a3a;
+    }
+
+    .navbar-brand{
+        width: 100%;
+    }
+
+    .navbar-toggler {
+        float: right;
+    }
+
+    .navbar-collapse {
+        margin-right: -15px !important; 
+        margin-left: -15px !important;
+    }
+
+    .collapsing {
+        background-color: white;
+    }
+
+    .addonNav{
+        color: #0096d6;
+        font-weight: 500;
+    }
+
+    .barraNav{
+        color: #f38f01;
+    }
+
+    .sdkNav{
+        font-size: 14px;
+        margin-left: 10px;
+        color: #555;
+    }
+/*-------------------------FIN-------------------------*/
+
+/* Clases para las funciones y variables con un background en blanco */
+    .arrow {
+        color:#0973ce;
+    }
+
+    .variableBgW {
+        color: #9c1c1c;
+    }
+
+    .orangeBgW {
+        color: #c15100;
+    }
+
+    .comentariosBgW {
+        color: #00752a;
+    }
+/*-------------------------FIN-------------------------*/
+
+/* Formularios de ejemplo */
+    .formulario {
+        box-shadow: 0 0px 3px 0px rgba(60,64,67,.3), 0 1px 20px 0px rgba(60,64,67,.15);
+        border-radius: 5px;
+    }
+/*-------------------------FIN-------------------------*/
+
+/* Clases del menú lateral */
+    .MenuLateral {
+        box-shadow: 0 1px 2px 0 rgba(60,64,67,.3), 0 1px 3px 1px rgba(60,64,67,.15);
+        background-color: white;
+        height: 100%;
+        top: 0.5em;
+        padding: 10px;
+    }
+    
+    .progress-bar {
+      height: 8px;
+      background: #009ee2;
+      width: 0%;
+    }
+
+    .sticky-top {
+        z-index: 10;
+    }
+/*-------------------------FIN-------------------------*/
+
+/* Estilos del contenedor principal */
+    .contenedor {
+        box-shadow: 0 1px 2px 0 rgba(60,64,67,.3), 0 1px 3px 1px rgba(60,64,67,.15);
+        background-color: white;
+    }
+
+    #contenidoComun {
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        -webkit-hyphens: auto;
+        -ms-hyphens: auto;
+        -moz-hyphens: auto;
+        hyphens: auto;
+    }
+
+    .titulo {
+        text-align: left;
+    }
+
+    .imagenTick {
+        width: 15%;
+    }
+
+    .custom-file-label::after {
+        content: "Buscar contenido";
+    }
+/*-------------------------FIN-------------------------*/
+
+/* Clases para los iconos*/
+    .inner-addon {
+        position: relative;
+    }
+
+    .left-addon input {
+        padding-left:  40px;
+    }
+
+    .icono {
+        position: absolute;
+        padding: 8px;
+        pointer-events: none;
+    }
+/*-------------------------FIN-------------------------*/
+    
+/* Clases para las funciones*/
+    .etiqueta{
+        color: #84bbff;
+    }
+
+    .panelCode {
+        background-color:#000000d1;
+    }
+
+    .require {
+        color: #0ca0ff;
+    }
+
+    .configure {
+        color: #52bbff;
+    }
+
+    .green {
+        color: #46bf71;
+    }
+
+    .comments {
+        color: #6d6d6d;
+    }
+
+    .imports {
+        color: #00c1aff7;
+    }
+
+    .variables {
+        color: #ffffff;
+    }
+
+    .new {
+        color: #86c7ff;
+    }
+
+    .service {
+        color: #edff8c;
+    }
+
+    .script {
+        color: #ff7b7b;
+    }
+
+    .function {
+        color: #bc89ff;
+    }
+
+    .orange {
+        color: #ec8942;
+    }
+
+    code {
+        color: #3ed8e8 !important;
+    }
+/*-------------------------FIN-------------------------*/

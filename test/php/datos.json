@@ -1,0 +1,357 @@
+[
+	{
+	"codigo": "1xx",
+	"descripcion": "Transacción denegada. Puedes tratar cualquier código 1xx como una transacción denegada e informar al cliente de que deberá intentar de nuevo el pago o probar con otro método distinto.",
+	"solucion": "El cliente de deberá intentar de nuevo el pago o probar con otro método distinto."
+	},
+	{
+	"codigo": "101",
+	"descripcion": "Rechazado por el banco: Generalmente hace referencia a fondos insuficientes o a datos de tarjeta incorrectos",
+	"solucion": "Por favor, póngase en contacto con su cliente para comprobar si su tarjeta está operativa y tiene fondos suficientes."
+	},
+	{
+	"codigo": "102",
+	"descripcion": "Falta la variable auto_settle_flag en el POST",
+	"solucion": "Debe introducir la variable 'AUTO_SETTLE_FLAG'. Los valores pueden ser '0', '1' o 'multi'."
+	},
+	{
+	"codigo": "102",
+	"descripcion": "Referencia del banco (normalmente se trata como una denegación normal de los sistemas de comercio electrónico) ",
+	"solucion": "Póngase en contacto con su soporte de Addon Payments llamando al teléfono 914 353 028 y proporciónele la información de la transacción."
+	},
+	{
+	"codigo": "103",
+	"descripcion": "Tarjeta perdida o robada (puede ser indicativo de un intento de fraude)",
+	"solucion": "Su cliente debe contactar con la entidad bancaria de la tarjeta y comprobar el correcto funcionamiento de la misma."
+	},
+	{
+	"codigo": "107",
+	"descripcion": " Esta transacción está bloqueada mediante la configuración de administración antifraude",
+	"solucion": "Transacción bloqueada por la regla antifraude creada en su panel de administración de Addon Payments."
+	},
+	{
+	"codigo": "108",
+	"descripcion": "Sistema de prueba en uso. Ha intentado realizar el pago con una tarjeta real, enviando la solicitud al entorno de pruebas.",
+	"solucion": "Debe utilizar sólo las tarjetas de pruebas facilitadas por el equipo de soporte de Addon Payments."
+	},
+	{
+	"codigo": "2xx",
+	"descripcion": "Error con los sistemas bancarios: Normalmente puede pedirle al cliente que vuelva a intentarlo de nuevo más tarde.",
+	"solucion": "Póngase en contacto con su soporte de Addon Payments llamando al teléfono 914 353 028 y proporciónele la información de la transacción."
+	},
+	{
+	"codigo": "3xx",
+	"descripcion": "Error con los sistemas de Addon Payments: Normalmente puede pedirle al cliente que vuelva a intentarlo de nuevo más tarde.",
+	"solucion": "Póngase en contacto con su soporte de Addon Payments llamando al teléfono 914 353 028 y proporciónele la información de la transacción."
+	},
+	{
+	"codigo": "5xx",
+	"descripcion": "Contenido o formación incorrectos de los mensajes XML. Se trata de errores de desarrollo errores de configuración o errores del cliente.",
+	"solucion": "Debe revisar el código XML que está enviando en su slicitud."
+	},
+	{
+	"codigo": "501",
+	"descripcion": "Este pedido («ID del pedido») ya se ha procesado.",
+	"solucion": "Debe realizar una transacción con un Order ID distinto al que ya ha utilizado."
+	},
+	{
+	"codigo": "502",
+	"descripcion": "El elemento AMOUNT no está permitido en las transacciones de OTB.",
+	"solucion": "En una operación OTB no es necesario enviar ningún importe, sólo se va a comprobar la validez de la tarjeta del cliente."
+	},
+	{
+	"codigo": "503",
+	"descripcion": "No se permite la divisa indicada.",
+	"solucion": "Debe enviar la operación bajo la divisa que contrató en su oficina de CaixaBank."
+	},
+	{
+	"codigo": "505",
+	"descripcion": "Solo cuentas activas. La URL desde la que has intentado acceder a la Hosted Payments Page no se ha añadido a la lista blanca de URL permitidas para la cuenta de destino. ",
+	"solucion": "Póngase en contacto con su soporte de Addon Payments llamando al teléfono 914 353 028 y proporciónele la información de la URL."
+	},
+	{
+	"codigo": "506",
+	"descripcion": "Error con el merchant_id o con el account",
+	"solucion": "Debe comprobar el valor que está introduciendo en el campo 'Merchant_ID' o 'Account'. Si los datos están bien y la transacción falla, póngase en contacto con su soporte de Addon Payments llamando al teléfono 914 353 028 y proporciónele la información de la transacción."
+	},
+	{
+	"codigo": "506",
+	"descripcion": "Tu cuenta está en modo DE PRUEBA; no puedes acceder a la URL activa de Redirect.",
+	"solucion": "Debe solicitar el pase a producción al equipo de soporte enviando un email a soporte@addonpayments.com."
+	},
+	{
+	"codigo": "508",
+	"descripcion": "No se ha configurado la combinación de método y divisa de pago del comercio.",
+	"solucion": "Póngase en contacto con su soporte de Addon Payments llamando al teléfono 914 353 028 y proporciónele la información de la transacción."
+	},
+	{
+	"codigo": "508",
+	"descripcion": "Falta el campo obligatorio SHA1HASH o se envía incorrecto",
+	"solucion": "Debe calcular la clave SHA1HASH y enviarla en la solicitud."
+	},
+	{
+	"codigo": "508",
+	"descripcion": "El valor MERCHANT_ID proporcionado contiene caracteres no válidos.",
+	"solucion": "Debe utilizar solo caracteres alfanuméricos."
+	},
+	{
+	"codigo": "508",
+	"descripcion": "El valor ACCOUNT proporcionado contiene caracteres no válidos; utiliza solo caracteres alfanuméricos.",
+	"solucion": "Debe utilizar solo caracteres alfanuméricos."
+	},
+	{
+	"codigo": "508",
+	"descripcion": "El ID del pedido proporcionado en la solicitud no es válido.",
+	"solucion": "El ID del pedido solo debe contener caracteres alfanuméricos y guiones («-») o caracteres de subrayado («_»)."
+	},
+	{
+	"codigo": "508",
+	"descripcion": "El número de caracteres en el campo ORDER_ID es superior al permitido.",
+	"solucion": "El ID del pedido no debe contener más de 40 caracteres."
+	},
+	{
+	"codigo": "508",
+	"descripcion": "La marca de tiempo proporcionada en la solicitud no es válida.",
+	"solucion": "La marca de tiempo solo debe contener valores numéricos de la forma AAAAMMDDhhmmss en formato 12 horas."
+	},
+	{
+	"codigo": "508",
+	"descripcion": "El importe especificado en la solicitud no es válido.",
+	"solucion": "Los importes deben ser distintos de cero positivos y superior a 0,05€"
+	},
+	{
+	"codigo": "508",
+	"descripcion": "El campo AMOUNT no admite ceros a la izquierda. ",
+	"solucion": "Debe enviar el campo AMOUNT sin introducir '0' a la izquierda."
+	},
+	{
+	"codigo": "508",
+	"descripcion": "Datos no válidos en el campo AUTO_SETTLE_FLAG. El indicador de liquidación automática proporcionado es incorrecto.",
+	"solucion": "El indicador de liquidación automática debe ser '0', '1' o 'multi'."
+	},
+	{
+	"codigo": "508",
+	"descripcion": "El campo RETURN_TSS proporcionado no es válido.",
+	"solucion": "Este campo solo debe contener los valores '0' o '1'."
+	},
+	{
+	"codigo": "508",
+	"descripcion": "Número incorrecto de caracteres en el campo CURRENCY.",
+	"solucion": "La divisa debe seguir la norma ISO 4217, por ejemplo, un código de divisa válido de tres caracteres."
+	},
+	{
+	"codigo": "508",
+	"descripcion": "El campo AMOUNT es obligatorio.",
+	"solucion": "Debe indicar un importe mínimo de 0,05€ para la transacción."
+	},
+	{
+	"codigo": "508",
+	"descripcion": "Campo ORDER_ID no válido. El ORDER_ID está vacío o es nulo.",
+	"solucion": "Se requiere un ID de pedido único para todas las transacciones procesadas a través de la HPP."
+	},
+	{
+	"codigo": "508",
+	"descripcion": "El campo CARD_PAYMENT_BUTTON proporcionado es demasiado largo.",
+	"solucion": "El campo CARD_PAYMENT_BUTTON se utiliza para definir el texto que se mostrará en el botón de pago para realizar transacciones con tarjeta. Si no se proporciona este campo se muestra de forma predeterminada «Pagar ahora». El campo no debe sobrepasar los 25 caracteres."
+	},
+	{
+	"codigo": "508",
+	"descripcion": "Datos no válidos en el campo MERCHANT_DESCRIPTOR.",
+	"solucion": "Póngase en contacto con su soporte de Addon Payments llamando al teléfono 914 353 028 y proporciónele la información de la transacción"
+	},
+	{
+	"codigo": "508",
+	"descripcion": "El campo MERCHANT_RESPONSE_URL proporcionado es demasiado largo.",
+	"solucion": "El campo puede tener como máximo un valor de 255 caracteres."
+	},
+	{
+	"codigo": "508",
+	"descripcion": "Se han incluido datos no válidos en el campo LANG.",
+	"solucion": "El idioma enviado debe tener un formato de 2 letras conforme a la norma ISO 639-1; puedes obtener más información aquí: Lista de códigos ISO_639-1."
+	},
+	{
+	"codigo": "508",
+	"descripcion": "No se puede conectar con la URL de respuesta del comercio.",
+	"solucion": "Póngase en contacto con su soporte de Addon Payments llamando al teléfono 914 353 028 y proporciónele la información de la transacción"
+	},
+	{
+	"codigo": "510",
+	"descripcion": "Se han enviado demasiados datos desde la URL de respuesta del comercio. El HTML de la llamada devuelta de la página de respuesta del comercio es superior a 50K.",
+	"solucion": "El HTML de la llamada devuelta de la página de respuesta del comercio no debe superar el tamaño superior a 50K."
+	},
+	{
+	"codigo": "510",
+	"descripcion": "Unable_to_connect_to_the_merchants_response_URL_ {2} ._Was_able_to_connect_to_alternate_URL.",
+	"solucion": "Addon Payments no ha podido conectarse con la primera URL de respuesta configurada para la cuenta pero se ha conectado a otra de las siguientes."
+	},
+	{
+	"codigo": "666",
+	"descripcion": "Cuenta desactivada: tu cuenta de Addon Payments se ha suspendido. ",
+	"solucion": "Póngase en contacto con su soporte de Addon Payments llamando al teléfono 914 353 028."
+	},
+	{
+	"codigo": "502",
+	"descripcion": "Falta el campo obligatorio. ",
+	"solucion": "Póngase en contacto con su soporte de Addon Payments llamando al teléfono 914 353 028 y proporciónele la información de la transacción."
+	},
+	{
+	"codigo": "502",
+	"descripcion": "El tipo de solicitud especificado en la solicitud no es válido para el extremo al que ha enviado la solicitud.",
+	"solucion": "Por ejemplo, es posible que haya enviado una inscripción de verificación de 3D Secure (3ds-verifyenrolled) al extremo equivocado."
+	},
+	{
+	"codigo": "503",
+	"descripcion": "Tipo de solicitud no reconocido.",
+	"solucion": "Póngase en contacto con su soporte de Addon Payments llamando al teléfono 914 353 028 y proporciónele la información de la transacción."
+	},
+	{
+	"codigo": "503",
+	"descripcion": "El tipo de solicitud especificado en la solicitud es válido pero actualmente no está activado en la cuenta de cliente a la que ha enviado la solicitud. ",
+	"solucion": "Póngase en contacto con su soporte de Addon Payments llamando al teléfono 914 353 028 e indique el tipo de solicitud que desea emplear."
+	},
+	{
+	"codigo": "504",
+	"descripcion": "El ID de cliente especificado en el tipo de solicitud no existe.",
+	"solucion": "Debe asegurarse de que está enviando la solicitud a un ID válido."
+	},
+	{
+	"codigo": "505",
+	"descripcion": "SHA1HASH incorrecto ",
+	"solucion": "Debe comprobar la cadena que está formando de SHA1HASH, para calcular dicha cadena debe seguir los pasos de la documentación."
+	},
+	{
+	"codigo": "505",
+	"descripcion": "No te está permitido acceder al servicio desde este lugar.",
+	"solucion": "La dirección IP desde la que has intentado enviar la solicitud XML no se ha añadido a la lista blanca de IP permitidas para la cuenta de destino. Póngase en contacto con su soporte de Addon Payments llamando al teléfono 914 353 028 y proporciónele su dirección IP."
+	},
+	{
+	"codigo": "505",
+	"descripcion": "La contraseña de reembolso introducida es incorrecta.",
+	"solucion": "Debe introducir la contraseña de Rebate Password."
+	},
+	{
+	"codigo": "506",
+	"descripcion": "Valores de MERCHANT_ID o ACCOUNT no válidos. ",
+	"solucion": "Debe comprobar que está introduciendo correctamente el identificador y la subcuenta faciltiada por el equipo de soporte."
+	},
+	{
+	"codigo": "506",
+	"descripcion": "El ID de cliente especificado en el tipo de solicitud no existe. ",
+	"solucion": "Introduzca un identificador válido acordado con el equipo de soporte de Addon Payments."
+	},
+	{
+	"codigo": "506",
+	"descripcion": "La solicitud enviada al extremo no incluía un mensaje XML. ",
+	"solucion": "Para este tipo de solicitudes debe enviar un mensaje XML."
+	},
+	{
+	"codigo": "506",
+	"descripcion": "La solicitud XML recibido no tenía el formato adecuado ",
+	"solucion": "Por favor, asegúrese que el formato que está enviando en su solicitud es el permitido por el servidor."
+	},
+	{
+	"codigo": "507",
+	"descripcion": "Combinación de divisa y tarjeta no permitida. ",
+	"solucion": "El formato de la tarjeta no corresponde con la divisa enviada en la solicitud."
+	},
+	{
+	"codigo": "509",
+	"descripcion": "Valor no numérico en el número de tarjeta de crédito ",
+	"solucion": "El valor de la tarjeta de crédito debe ser solo numérico."
+	},
+	{
+	"codigo": "509",
+	"descripcion": "Longitud de la tarjeta de crédito no válida. ",
+	"solucion": "Debe introducir una longitud de tarjeta de crédito válida."
+	},
+	{
+	"codigo": "509",
+	"descripcion": "El número de tarjeta no supera la comprobación de Luhn. ",
+	"solucion": "Póngase en contacto con su soporte de Addon Payments llamando al teléfono 914 353 028 y proporciónele la información de la transacción."
+	},
+	{
+	"codigo": "509",
+	"descripcion": "Fecha de caducidad no válida. ",
+	"solucion": "Debe introducir una fecha de caducidad válidad para su solicitud."
+	},
+	{
+	"codigo": "509",
+	"descripcion": "Este número de tarjeta no se corresponde con el tipo de tarjeta seleccionado. ",
+	"solucion": "Póngase en contacto con su soporte de Addon Payments llamando al teléfono 914 353 028 y proporciónele la información de la transacción."
+	},
+	{
+	"codigo": "509",
+	"descripcion": "La longitud de los datos de CVV es incorrecta. ",
+	"solucion": "La longitud del código CVV debe corresponderse con la numeración indicada en el código de seguridad de su tarjeta."
+	},
+	{
+	"codigo": "510",
+	"descripcion": "El importe supera el máximo permitido. ",
+	"solucion": "Póngase en contacto con su soporte de Addon Payments llamando al teléfono 914 353 028 y proporciónele la información de la transacción."
+	},
+	{
+	"codigo": "512",
+	"descripcion": "Esta transacción ya se ha devuelto y no puede devolverse de nuevo. ",
+	"solucion": "Póngase en contacto con su soporte de Addon Payments llamando al teléfono 914 353 028 y proporciónele la información de la transacción."
+	},
+	{
+	"codigo": "512",
+	"descripcion": "No puede reembolsar una transacción pospuesta que no se ha enviado para su liquidación. ",
+	"solucion": "Para realizar un reembolso sobre una transacción, primero debe liquidarla. En caso de que quiera anular la transacción, deberá enviar una solicitud VOID."
+	},
+	{
+	"codigo": "512",
+	"descripcion": "Ha intentado devolver una transacción en una divisa diferente a la divisa de la transacción original. ",
+	"solucion": "Debe realizar la devolución indicando la divisa original de la operación."
+	},
+	{
+	"codigo": "513",
+	"descripcion": "No se puede anular una transacción liquidada.",
+	"solucion": "Si la transacción ha sido liquidada, podrá realizar una devolución (rebate). Las anulaciones se realizan cuando las transacciones no han sido liquidadas anteriormente."
+	},
+	{
+	"codigo": "110",
+	"descripcion": "Transacción bloqueada por la configuración de 3D Secure del comercio",
+	"solucion": "Póngase en contacto con su soporte de Addon Payments llamando al teléfono 914 353 028 y proporciónele la información de la transacción."
+	},
+	{
+	"codigo": "503",
+	"descripcion": "3D Secure no se ha configurado en la cuenta especificada para la combinación de divisa y tarjeta que se ha proporcionado. ",
+	"solucion": "Póngase en contacto con su soporte de Addon Payments llamando al teléfono 914 353 028 y proporciónele la información de la transacción."
+	},
+	{
+	"codigo": "508",
+	"descripcion": "El campo ECI sobrepasa el límite de caracteres. ",
+	"solucion": "El límite de caracteres es 1. Los valores que puede indicar corresponden del 0 al 9. Para más información revise la documetnación oficial de Addon Payments."
+	},
+	{
+	"codigo": "508",
+	"descripcion": "Datos no válidos en el campo ECI ",
+	"solucion": "Los valores que puede indicar corresponden del 0 al 9. Para más información revise la documetnación oficial de Addon Payments."
+	},
+	{
+	"codigo": "509",
+	"descripcion": "Se debe incluir un valor de ECI para las cuentas con MPI. ",
+	"solucion": "Los valores que puede indicar corresponden del 0 al 9. Para más información revise la documetnación oficial de Addon Payments."
+	},
+	{
+	"codigo": "520",
+	"descripcion": "El ID del mensaje de VERes no es el mismo que el de VEReq. ",
+	"solucion": "Póngase en contacto con su soporte de Addon Payments llamando al teléfono 914 353 028 y proporciónele la información de la transacción."
+	},
+	{
+	"codigo": "520",
+	"descripcion": "Elemento sin definir en el mensaje antes de VERes. ",
+	"solucion": "Póngase en contacto con su soporte de Addon Payments llamando al teléfono 914 353 028 y proporciónele la información de la transacción."
+	},
+	{
+	"codigo": "520",
+	"descripcion": "Elemento no válido en el mensaje antes de PARes. ",
+	"solucion": "Póngase en contacto con su soporte de Addon Payments llamando al teléfono 914 353 028 y proporciónele la información de la transacción."
+	},
+	{
+	"codigo": "520",
+	"descripcion": "Elemento raíz no válido. ",
+	"solucion": "Póngase en contacto con su soporte de Addon Payments llamando al teléfono 914 353 028 y proporciónele la información de la transacción."
+	}
+]
