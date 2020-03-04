@@ -31,7 +31,7 @@ Este SDK ha sido adaptado por Comercia Global Payments para facilitar la integra
 
 ## Instalación
 
-La instalación del SDK en su solución se realiza normalmente utilizando Compositor/Packagist, o añadiendo el proyecto a su solución y haciendo referencia a él directamente.
+La instalación del SDK en su solución se realiza normalmente utilizando Composer/Packagist, o añadiendo el proyecto a su solución y haciendo referencia a él directamente.
 
 Para instalar vía [Composer/Packagist](https://packagist.org/packages/addonpayments/php-sdk), debe introducir los siguientes comandos en su consola:
 
