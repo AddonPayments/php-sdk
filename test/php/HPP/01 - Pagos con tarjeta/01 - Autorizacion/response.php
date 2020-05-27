@@ -27,7 +27,9 @@ foreach ($_POST as $key => $value) {
 //Comprobamos la firma de la petición
 try {
     // Mostramos la respuesta de la transacción
-    $parsedResponse = $service->parseResponseFromData($_POST);
+    $jsonPostString = json_encode($_POST);
+
+    $parsedResponse = $service->parseResponse($jsonPostString,false);
 
     $orderId = $parsedResponse->orderId; // GTI5Yxb0SumL_TkDMCAxQA
     $responseCode = $parsedResponse->responseCode; // 00

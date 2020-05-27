@@ -87,13 +87,6 @@ class HostedService
                         ->withPaymentMethod($transaction);
     }
 
-    public function parseResponseFromData($postData = [])
-    {
-        $jsonString = json_encode($postData);
-
-        return $this->parseResponse($jsonString,false);
-    }
-
     public function parseResponse($response, $encoded = false)
     {
         $response = json_decode($response, true);
