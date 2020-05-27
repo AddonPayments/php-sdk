@@ -19,18 +19,23 @@ $config->serviceUrl = SERVICEURL;
 
 $service = new HostedService($config);
 
+//DEBUG POST
+foreach ($_POST as $key => $value) {
+    echo $key .'='. $value.'<br>';
+}
+
 //Comprobamos la firma de la petición
-
-// Mostramos la respuesta de la transacción
 try {
-
-    foreach ($_POST as $key => $value) {
-        echo $key .'='. $value.'<br>';
-    }
-
+    // Mostramos la respuesta de la transacción
     $parsedResponse = $service->parseResponseFromData($_POST);
 
-    var_dump($parsedResponse);
+    $orderId = $parsedResponse->orderId; // GTI5Yxb0SumL_TkDMCAxQA
+    $responseCode = $parsedResponse->responseCode; // 00
+    $responseMessage = $parsedResponse->responseMessage; // [ test system ] Authorised
+    $responseValues = $parsedResponse->responseValues; // get values accessible by key
+
+    echo '<p>Order Id:'.$orderId.'</p>';
+    echo '<p>Response Code:'.$responseCode.'</p>';
 
     echo '<a href="https://midominio.es"><button>Volver a la documentación</button></a>';
 	
