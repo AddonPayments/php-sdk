@@ -1,3 +1,7 @@
+<?php
+require_once('bootstrap.php');
+require_once(FCPATH.'config.php');
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -209,7 +213,7 @@
                                             <span class="etiqueta">&lt;?php</span>
                                         </b>
                                         <br>
-                                            <span class="comments">// Imports necesarios para realizar una aturoización</span>
+                                            <span class="comments">// Imports necesarios para realizar una autorización</span>
                                         <br>
                                             <span class="require">require_once('<span class="green">vendor/autoload.php</span>');</span>
                                         <br>
@@ -512,7 +516,7 @@
                                 <hr>
 
                                 <p>
-                                    Para poder procesar la transacción con el formulario de ejemplo, debe modificar el archivo "Authorization.php" que se encuentra en la ruta "vendor\addonpayments\php-sdk\test\php\HPP\01 - Pagos con tarjeta\01 - Autorización".
+                                    Para poder procesar la transacción con el formulario de ejemplo, debe modificar el archivo "config.php" que se encuentra en la ruta "vendor\addonpayments\php-sdk\test\php\HPP\01 - Pagos con tarjeta\01 - Autorización".
                                 </p>
                                 <p>
                                     Debe introducir sus datos de configuración tal y como se muestra en el punto 2.2 de esta guía.
@@ -567,10 +571,10 @@
 
         <script>
             $(document).ready(function() {
-                $.getJSON("Authorization.php", function(jsonFromRequestEndpoint) {
+                $.getJSON("authorization.php", function(jsonFromRequestEndpoint) {
                   RealexHpp.setHppUrl("https://hpp.sandbox.addonpayments.com/pay");
                   // When using full page redirect your Response URL must be an absolute link
-                  RealexHpp.redirect.init("payButtonId", "https://midominio.es/response.php", jsonFromRequestEndpoint);
+                  RealexHpp.redirect.init("payButtonId", "<?php echo RESPONSE_URL ?>", jsonFromRequestEndpoint);
                 });
             });
         </script>

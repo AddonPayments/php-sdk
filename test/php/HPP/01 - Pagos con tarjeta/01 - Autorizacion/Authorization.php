@@ -1,11 +1,10 @@
 <?php
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+require_once('bootstrap.php');
+require_once(FCPATH.'config.php');
 
 // Cargamos el archivo que enruta las clases del SDK
-require_once('../../../../../../../autoload.php');
+require_once(FCPATH.'../../../../../vendor/autoload.php');
 
 // Importamos las clases necesarias para la operación de autorización
 use AddonPayments\Api\ServicesConfig;
@@ -17,10 +16,12 @@ use AddonPayments\Api\Entities\HostedPaymentData;
 use AddonPayments\Api\Entities\Enums\HppVersion;
 
 $config = new ServicesConfig();
-$config->merchantId = "addonphptest";
-$config->accountId = "internet";
-$config->sharedSecret = "secret";
-$config->serviceUrl = "https://hpp.sandbox.addonpayments.com/pay";
+
+$config->merchantId = MERCHANTID;
+$config->accountId = ACCOUNTID;
+$config->sharedSecret = SHAREDSECRET;
+
+$config->serviceUrl = SERVICEURL;
 $config->hostedPaymentConfig = new HostedPaymentConfig();
 $config->hostedPaymentConfig->version = HppVersion::VERSION_2;
 $service = new HostedService($config);
