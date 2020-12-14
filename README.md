@@ -20,6 +20,7 @@ Este SDK ha sido adaptado por Comercia Global Payments para facilitar la integra
 * Normas incorporadas para la prevención del fraude
 * Comprobaciones 3D Secure, AVS y CVV
 * Cifrado seguro de extremo a extremo
+* Compatible con la versión 2 de 3D Secure
 
 ## Requisitos
 

@@ -111,8 +111,7 @@ class GenerationUtils
         $uuid = self::getGuid();
         $mostSignificantBits = substr($uuid, 0, 8);
         $leastSignificantBits = substr($uuid, 23, 8);
-        $timestamp = date("dmY_H-i").'_SDK_v2-0-0_';
-        $sdk = 'SDK2.0';
+        $timestamp = date("dmY_H-i").'_SDK_v2-1-0_';
         return substr($timestamp . base64_encode($mostSignificantBits.$leastSignificantBits),
             0,
             40

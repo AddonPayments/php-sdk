@@ -1,19 +1,19 @@
 <?php
 
-namespace GlobalPayments\Api\Gateways;
+namespace AddonPayments\Api\Gateways;
 
-use GlobalPayments\Api\Builders\Secure3dBuilder;
-use GlobalPayments\Api\Entities\ThreeDSecure;
-use GlobalPayments\Api\Entities\Transaction;
-use GlobalPayments\Api\Entities\Enums\Secure3dVersion;
-use GlobalPayments\Api\Entities\Enums\TransactionType;
-use GlobalPayments\Api\Entities\Exceptions\ApiException;
-use GlobalPayments\Api\Entities\Exceptions\GatewayException;
-use GlobalPayments\Api\PaymentMethods\CreditCardData;
-use GlobalPayments\Api\PaymentMethods\Interfaces\IPaymentMethod;
-use GlobalPayments\Api\PaymentMethods\Interfaces\ISecure3d;
-use GlobalPayments\Api\PaymentMethods\RecurringPaymentMethod;
-use GlobalPayments\Api\Utils\GenerationUtils;
+use AddonPayments\Api\Builders\Secure3dBuilder;
+use AddonPayments\Api\Entities\ThreeDSecure;
+use AddonPayments\Api\Entities\Transaction;
+use AddonPayments\Api\Entities\Enums\Secure3dVersion;
+use AddonPayments\Api\Entities\Enums\TransactionType;
+use AddonPayments\Api\Entities\Exceptions\ApiException;
+use AddonPayments\Api\Entities\Exceptions\GatewayException;
+use AddonPayments\Api\PaymentMethods\CreditCardData;
+use AddonPayments\Api\PaymentMethods\Interfaces\IPaymentMethod;
+use AddonPayments\Api\PaymentMethods\Interfaces\ISecure3d;
+use AddonPayments\Api\PaymentMethods\RecurringPaymentMethod;
+use AddonPayments\Api\Utils\GenerationUtils;
 
 class Gp3DSProvider extends RestGateway implements ISecure3dProvider
 {
@@ -110,12 +110,14 @@ class Gp3DSProvider extends RestGateway implements ISecure3dProvider
 
             $hash = GenerationUtils::generateHash($this->sharedSecret, implode('.', [$timestamp, $this->merchantId, $hashValue]));
             $headers['Authorization'] = sprintf('securehash %s', $hash);
+            $headers["X-GP-Version"] = "2.2.0";
 
             $rawResponse = $this->doTransaction('POST', 'protocol-versions', json_encode($request), null, $headers);
             return $this->mapResponse($rawResponse);
         } elseif ($transType === TransactionType::VERIFY_SIGNATURE) {
             $hash = GenerationUtils::generateHash($this->sharedSecret, implode('.', [$timestamp, $this->merchantId, $builder->getServerTransactionId()]));
             $headers['Authorization'] = sprintf('securehash %s', $hash);
+            $headers["X-GP-Version"] = "2.2.0";
 
             $queryValues = [];
             $queryValues['merchant_id'] = $this->merchantId;
@@ -325,6 +327,7 @@ class Gp3DSProvider extends RestGateway implements ISecure3dProvider
 
             $hash = GenerationUtils::generateHash($this->sharedSecret, implode('.', [$timestamp, $this->merchantId, $hashValue, $secureEcom->serverTransactionId]));
             $headers['Authorization'] = sprintf('securehash %s', $hash);
+            $headers["X-GP-Version"] = "2.2.0";
             $rawResponse = $this->doTransaction('POST', 'authentications', json_encode($request, JSON_UNESCAPED_SLASHES), null, $headers);
             return $this->mapResponse($rawResponse);
         }

@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="author" content="Víctor Cantera">
+        <link rel="icon" href="../../../../assets/img/comercia_ico.png" type="image/x-icon"/ >
+        <title>Datos adicionales 3DS2 (HPP) - SDK PHP</title>
+
+        <!-- Bootstrap 4.3.1 -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="../../../../assets/css/style.css">
+
+        <!-- Script para comprobar los datos de la tarjeta mediante HPP -->
+        <script src="../../../../assets/js/rxp-hpp.js"></script> <!-- Available at https://github.com/realexpayments -->
+    </head>
+
+    <body>
+        <!-- NAVBAR -->
+        <nav class="navbar navbar-expand-lg navbar-light navbar-rpdc mb-3">
+            <a class="navbar-brand">
+                <img src="../../../../assets/img/log2.svg" width="30" height="30" class="img-fluid" alt="Logo Addon Payments">
+                <span class="addonNav">ADDON</span> <span>PAYMENTS</span>
+                <span class="d-none d-sm-none d-lg-inline d-xl-inline sdkNav">
+                    <span>
+                        /SDK
+                        <span class="barraNav">_</span>
+                        de
+                        <span class="barraNav">_</span>
+                        PHP
+                    </span>
+                </span>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+          </a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto pl-2 pr-2">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link pl-2 dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Inicio
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item pl-2" href="../../../../index.php">Índice</a>
+                            <a class="dropdown-item pl-2" href="../../../errores.php">Errores de Addon Payments</a>
+                            <a class="dropdown-item pl-2" href="../../../informe.html">Convertir informe</a>
+                        </div>
+                    </li>
+                    <li class="nav-item ml-1 dropdown">
+                        <a class="nav-link pl-2 dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Pagos con tarjeta
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <div class="dropdown-header text-center p-0">API</div>
+                            <hr class="m-0 p-0">
+                                <a class="dropdown-item pl-2" href="../../../API/01%20-%20Pagos%20con%20tarjeta/01%20-%20Autorización/index.php">Autorización</a>
+                                <a class="dropdown-item pl-2" href="../../../API/01%20-%20Pagos%20con%20tarjeta/01%20-%20Autorización/DatosDelCliente.php">Datos adicionales</a>
+                                <a class="dropdown-item pl-2" href="../../../API/01%20-%20Pagos%20con%20tarjeta/02%20-%20OTB/index.php">OTB</a>
+                                <a class="dropdown-item pl-2" href="../../../API/01%20-%20Pagos%20con%20tarjeta/03%20-%20Credit/index.php">Credit</a>
+                            <hr class="m-0 p-0">
+                            <div class="dropdown-header text-center p-0">HPP</div>
+                            <hr class="m-0 p-0">
+                                <a class="dropdown-item pl-2" href="../../01%20-%20Pagos%20con%20tarjeta/01%20-%20Autorizacion/index.php">Autorización</a>
+                                <a class="dropdown-item pl-2" href="../../01%20-%20Pagos%20con%20tarjeta/02%20-%20OTB/index.php">OTB</a>
+                                <a class="dropdown-item pl-2" href="../../01%20-%20Pagos%20con%20tarjeta/03%20-%20Pay%20By%20Link/index.php">Pay By Link</a>
+                                <a class="dropdown-item pl-2" href="../../01%20-%20Pagos%20con%20tarjeta/04%20-%20Auth%20con%20iframe/index.php">Iframe</a>
+                                <a class="dropdown-item pl-2" href="../../01%20-%20Pagos%20con%20tarjeta/05%20-%20Lightbox/index.php">Lightbox</a>
+                        </div>
+                    </li>
+                    <li class="nav-item ml-1 dropdown">
+                        <a class="nav-link pl-2 dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Almacenamiento de tarjeta
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <div class="dropdown-header text-center p-0">API</div>
+                            <hr class="m-0 p-0">
+                                <a class="dropdown-item pl-2" href="../../../API/02%20-%20Almacenamiento%20de%20tarjeta/01%20-%20Crear%20un%20cliente/index.php">Crear un cliente</a>
+                                <a class="dropdown-item pl-2" href="../../../API/02%20-%20Almacenamiento%20de%20tarjeta/02%20-%20Almacenar%20una%20tarjeta/index.php">Almacenar una tarjeta</a>
+                                <a class="dropdown-item pl-2" href="../../../API/02%20-%20Almacenamiento%20de%20tarjeta/03%20-%20Editar%20tarjeta/index.php">Editar tarjetas</a>
+                                <a class="dropdown-item pl-2" href="../../../API/02%20-%20Almacenamiento%20de%20tarjeta/04%20-%20Eliminar%20tarjeta/index.php">Eliminar tarjetas</a>
+                                <a class="dropdown-item pl-2" href="../../../API/02%20-%20Almacenamiento%20de%20tarjeta/05%20-%20Auth/index.php">Autorización</a>
+                                <a class="dropdown-item pl-2" href="../../../API/02%20-%20Almacenamiento%20de%20tarjeta/06%20-%20Credit/index.php">Credit</a>
+                                <a class="dropdown-item pl-2" href="../../../API/02%20-%20Almacenamiento%20de%20tarjeta/07%20-%20DCC/index.php">Dynamic Currency Conversion</a>
+                            <hr class="m-0 p-0">
+                            <div class="dropdown-header text-center p-0">HPP</div>
+                            <hr class="m-0 p-0">
+                                <a class="dropdown-item pl-2" href="../../02%20-%20Almacenamiento%20de%20tarjeta/01%20-%20Crear%20un%20cliente/index.php">Crear un cliente</a>
+                                <a class="dropdown-item pl-2" href="../../02%20-%20Almacenamiento%20de%20tarjeta/02%20-%20Mostrar%20Tarjetas/index.php">Mostrar tarjetas</a>
+                        </div>
+                    </li>
+
+                    <li class="nav-item ml-1 dropdown">
+                        <a class="nav-link pl-2 dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Gestión de transacciones
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item pl-2" href="../../../API/03%20-%20Gestión%20de%20transacciones/01%20-%20Capturar/index.php">Settle (Capturar)</a>
+                            <a class="dropdown-item pl-2" href="../../../API/03%20-%20Gestión%20de%20transacciones/02%20-%20Rebate/index.php">Rebate (Devolución)</a>
+                            <a class="dropdown-item pl-2" href="../../../API/03%20-%20Gestión%20de%20transacciones/03%20-%20Void/index.php">Void (Anular transacción)</a>
+                        </div>
+                    </li>
+
+                    <li class="nav-item ml-1 dropdown">
+                        <a class="nav-link pl-2 dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Filtro de fraude
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            
+                            <div class="dropdown-header text-center p-0">API</div>
+                            <hr class="m-0 p-0">
+                                <a class="dropdown-item pl-2"  href="../../../API/05%20-%20Fraud%20Management/01%20-%20Fraud%20Filter/index.php">Filtro de fraude</a>
+                                <a class="dropdown-item pl-2"  href="../../../API/05%20-%20Fraud%20Management/02%20-%20Address%20Verification">Verificación de dirección</a>
+                                <a class="dropdown-item pl-2"  href="../../../API/05%20-%20Fraud%20Management/03%20-%20Hold">Retener transacción</a>
+                                <a class="dropdown-item pl-2"  href="../../../API/05%20-%20Fraud%20Management/04%20-%20Lanzamiento">Lanzar transacción</a>
+                            <hr class="m-0 p-0">
+                            <div class="dropdown-header text-center p-0">HPP</div>
+                            <hr class="m-0 p-0">
+                                <a class="dropdown-item pl-2"  href="../../03%20-%20Fraud%20Management/01%20-%20Fraud%20Filter/index.php">Filtro de fraude</a>
+                        </div>
+                    </li>
+
+                    <li class="nav-item ml-1 dropdown">
+                        <a class="nav-link pl-2 dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            DCC
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <div class="dropdown-header text-center p-0">API</div>
+                            <hr class="m-0 p-0">
+                                <a class="dropdown-item pl-2"  href="../../../API/04%20-%20DCC/01%20-%20Comprobar%20DCC/index.php">Comprobar DCC</a>
+                            <hr class="m-0 p-0">
+                            <div class="dropdown-header text-center p-0">HPP</div>
+                            <hr class="m-0 p-0">
+                                <a class="dropdown-item pl-2"href="../../04%20-%20DCC/index.php">Operación con DCC</a>
+                        </div>
+                    </li>
+                    <li class="nav-item ml-1 dropdown">
+                        <a class="nav-link pl-2 dropdown-toggle active" href="#" id="06-3DS2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            3DS2
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <div class="dropdown-header text-center p-0">API</div>
+                            <hr class="m-0 p-0">
+                                <a class="dropdown-item pl-2" href="../../../API/06%20-%203DS2/01%20-%20Autorización/index.html">Autorización</a>
+                            <hr class="m-0 p-0">
+                            <div class="dropdown-header text-center p-0">HPP</div>
+                            <hr class="m-0 p-0">
+                                <a class="dropdown-item pl-2" href="../01%20-%20Autorización/index.html">Autorización</a>
+                                <a class="dropdown-item pl-2 active" href="#">Datos adicionales</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!-- /NAVBAR -->
+
+        <div class="col-lg-12"> 
+            <div id="contenidoComun" class="container-fluid">
+                <div class="row">
+
+                    <!-- Menú lateral -->
+                    <div class="col-lg-2 sticky-top d-none d-sm-none d-lg-block d-xl-block MenuLateral">
+
+                        <!-- Barra de progreso -->
+                        <div class="progress-bar" id="progreso"></div>
+                        <!-- /Barra de progreso -->
+
+                        <nav class="navbar sticky-top navbar-light" style="padding: 0px;">
+                            <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="#3ds2Info">1. 3D Secure 2 - Datos adicionales</a>
+                                <nav>
+                                  <a class="nav-link ml-3 my-1" href="#exenciones">1.1 Exenciones</a>
+                                </nav>
+                                <a class="nav-link" href="#authFlujos"> 2. Flujos de autenticación</a>
+                                <nav class="nav nav-pills flex-column">
+                                  <a class="nav-link ml-3 my-1" href="#flujoSinFric">2.1 Flujo sin fricción</a>
+                                  <a class="nav-link ml-3 my-1" href="#camposOblig">2.2 Flujo con fricción</a>
+                                  <a class="nav-link ml-3 my-1" href="#simulador">2.3 Simulador ACS</a>
+                                  <a class="nav-link ml-3 my-1" href="#resultadoDesafio">2.4 Resultado del desafío</a>
+                                </nav>
+                                <a class="nav-link" href="#FormEjemplo1">3. Formulario de ejemplo</a>
+                                <nav>
+                                    <a class="nav-link ml-3 my-1" href="#Formulario">3.1 Formulario</a>
+                                    <a class="nav-link ml-3 my-1" href="#respuestaForm">3.2 Respuesta de operación</a>
+                                </nav>
+                            </nav>
+                        </nav>
+                    </div>
+                    <div class="col-lg-10" >
+                        <div class="contenedor">
+                            <div class="pl-3 pt-3 pr-3 pb-4 mb-3 text-justify">
+                                <h3 id="3ds2Info" class="titulo">
+                                    1. 3D Secure 2 - Datos adicionales
+                                </h3>
+
+                                <hr>
+
+                                <p>
+                                    3D Secure 2 permite el envío de un conjunto de datos mucho mayor que su predecesor. Cuantos más datos se envíen, más información tendrá el Emisor al tomar la decisión de si la autenticación de la transacción debe realizarse a través de un flujo sin fricción o de desafío.
+                                </p>
+                                <p>
+                                    Los tipos de datos disponibles para enviar incluyen:
+                                    <ul>
+                                        <li>Cuenta de cliente con el comercio (fecha de creación e historial)</li>
+                                        <li>Tarjeta de regalo</li>
+                                        <li>Información periódica y de cuotas</li>
+                                        <li>Autenticación 3D Secure 2 previa</li>
+                                        <li>Autenticación comercial del cliente</li>
+                                    </ul>
+                                </p>
+
+                                <div class="p-4 mb-4 panelCode">
+                                    <code>
+                                        <b>
+                                            <span class="etiqueta">&lt;?php</span>
+                                        </b>
+                                        <br>
+                                            <span class="comments">// Imports necesarios para realizar una aturoización</span>
+                                        <br>
+                                            <span class="require">require_once('<span class="green">vendor/autoload.php</span>');</span>
+                                        <br>
+                                        <br>
+                                            <span class="pl-3 require">use <span class="imports">AddonPayments\Api\Entities\Address</span>;</span>
+                                        <br>
+                                            <span class="pl-3 require">use <span class="imports">AddonPayments\Api\Entities\Enums\AddressType</span>;</span>
+                                        <br>
+                                            <span class="pl-3 require">use <span class="imports">AddonPayments\Api\ServicesConfig</span>;</span>
+                                        <br>
+                                            <span class="pl-3 require">use <span class="imports">AddonPayments\Api\HostedPaymentConfig</span>;</span>
+                                        <br>
+                                            <span class="pl-3 require">use <span class="imports">AddonPayments\Api\Entities\HostedPaymentData</span>;</span>
+                                        <br>
+                                            <span class="pl-3 require">use <span class="imports">AddonPayments\Api\Entities\Enums\HppVersion</span>;</span>
+                                        <br>
+                                            <span class="pl-3 require">use <span class="imports">AddonPayments\Api\Entities\Exceptions\ApiException</span>;</span>
+                                        <br>
+                                            <span class="pl-3 require">use <span class="imports">AddonPayments\Api\Services\HostedService</span>;</span>
+                                        <br>
+                                        <br>
+                                            <span class="pl-3 comments">// Configuración del terminal</span>
+                                        <br>
+                                            <span class="pl-3">$</span><span class="variables">config</span> <span class="require">=</span> <span class="new">new</span> <span class="service">ServicesConfig()</span><span class="require">;</span>
+                                        <br>
+                                            <span class="pl-3">$</span><span class="variables">config</span><span class="require">-></span><span class="variables">merchantId</span> <span class="require">= "</span><span class="green">Merchant_ID</span><span class="require">";</span>
+                                        <br>
+                                            <span class="pl-3">$</span><span class="variables">config</span><span class="require">-></span><span class="variables">accountId</span> <span class="require">= "</span><span class="green">Sub_Account</span><span class="require">";</span>
+                                        <br>
+                                            <span class="pl-3">$</span><span class="variables">config</span><span class="require">-></span><span class="variables">sharedSecret</span> <span class="require">= "</span><span class="green">Shared_Secret</span><span class="require">";</span>
+                                        <br>
+                                            <span class="pl-3">$</span><span class="variables">config</span><span class="require">-></span><span class="variables">serviceUrl</span> <span class="require">= "</span><span class="green">URL</span><span class="require">";</span>
+                                        <br>
+                                            <span class="pl-3">$</span><span class="variables">config</span><span class="require">-></span><span class="variables">hostedPaymentConfig</span> <span class="require">=</span> <span class="new">new</span> <span class="service">HostedPaymentConfig</span><span class="require">()</span><span class="require">;</span>
+                                        <br>
+                                            <span class="pl-3">$</span><span class="variables">config</span><span class="require">-></span><span class="variables">hostedPaymentConfig</span><span class="require">-></span><span class="variables">version</span> <span class="require">=</span> <span class="service">HppVersion</span><span class="require">::</span><span class="variables">VERSION_2</span><span class="require">;</span>
+                                        <br>
+                                            <span class="pl-3">$</span><span class="variables">service</span> <span class="require">=</span> <span class="new">new</span> <span class="service">HostedService</span><span class="require">(</span>$<span class="variables">config</span><span class="require">)</span><span class="require">;</span>
+                                        <br>
+                                        <br>
+                                            <span class="pl-3 comments">// Añadimos los campos obligatorios de 3DS2 de dirección de facturación</span>
+                                        <br>
+                                            <span class="pl-3">$</span><span class="variables">billingAddress</span> <span class="require">=</span> <span class="new">new</span> <span class="service">Address</span><span class="require">()</span><span class="require">;</span>
+                                        <br>
+                                            <span class="pl-3">$</span><span class="variables">billingAddress</span><span class="require">-></span><span class="variables">streetAddress1</span> <span class="require">= "</span><span class="green">Dirección de facturación 1</span><span class="require">";</span>
+                                        <br>
+                                            <span class="pl-3">$</span><span class="variables">billingAddress</span><span class="require">-></span><span class="variables">streetAddress2</span> <span class="require">= "</span><span class="green">Dirección de facturación 2</span><span class="require">";</span>
+                                        <br>
+                                            <span class="pl-3">$</span><span class="variables">billingAddress</span><span class="require">-></span><span class="variables">streetAddress3</span> <span class="require">= "</span><span class="green">Dirección de facturación 3</span><span class="require">";</span>
+                                        <br>
+                                            <span class="pl-3">$</span><span class="variables">billingAddress</span><span class="require">-></span><span class="variables">city</span> <span class="require">= "</span><span class="green">Ciudad de facturación</span><span class="require">";</span>
+                                        <br>
+                                            <span class="pl-3">$</span><span class="variables">billingAddress</span><span class="require">-></span><span class="variables">postalCode</span> <span class="require">= "</span><span class="green">Código postal de facturación</span><span class="require">";</span>
+                                        <br>
+                                            <span class="pl-3">$</span><span class="variables">billingAddress</span><span class="require">-></span><span class="variables">country</span> <span class="require">= "</span><span class="green">País de facturación</span><span class="require">";</span>
+                                        <br>
+                                        <br>
+                                            <span class="pl-3 comments">// Añadimos los campos obligatorios de 3DS2 de dirección de envío</span>
+                                        <br>
+                                            <span class="pl-3">$</span><span class="variables">shippingAddress</span> <span class="require">=</span> <span class="new">new</span> <span class="service">Address</span><span class="require">()</span><span class="require">;</span>
+                                        <br>
+                                            <span class="pl-3">$</span><span class="variables">shippingAddress</span><span class="require">-></span><span class="variables">streetAddress1</span> <span class="require">= "</span><span class="green">Dirección de envío 1</span><span class="require">";</span>
+                                        <br>
+                                            <span class="pl-3">$</span><span class="variables">shippingAddress</span><span class="require">-></span><span class="variables">streetAddress2</span> <span class="require">= "</span><span class="green">Dirección de envío 2</span><span class="require">";</span>
+                                        <br>
+                                            <span class="pl-3">$</span><span class="variables">shippingAddress</span><span class="require">-></span><span class="variables">streetAddress3</span> <span class="require">= "</span><span class="green">Dirección de envío 3</span><span class="require">";</span>
+                                        <br>
+                                            <span class="pl-3">$</span><span class="variables">shippingAddress</span><span class="require">-></span><span class="variables">city</span> <span class="require">= "</span><span class="green">Ciudad de envío</span><span class="require">";</span>
+                                        <br>
+                                            <span class="pl-3">$</span><span class="variables">shippingAddress</span><span class="require">-></span><span class="variables">state</span> <span class="require">= "</span><span class="green">Código ISO del país de envío</span><span class="require">";</span>
+                                        <br>
+                                            <span class="pl-3">$</span><span class="variables">shippingAddress</span><span class="require">-></span><span class="variables">postalCode</span> <span class="require">= "</span><span class="green">Código postal de envío</span><span class="require">";</span>
+                                        <br>
+                                            <span class="pl-3">$</span><span class="variables">shippingAddress</span><span class="require">-></span><span class="variables">country</span> <span class="require">= "</span><span class="green">País de envío</span><span class="require">";</span>
+                                        <br>
+                                        <br>
+                                            <span class="pl-3 comments">// Añadimos los campos obligatorios de 3DS2 del cliente</span>
+                                        <br>
+                                            <span class="pl-3">$</span><span class="variables">hostedPaymentData</span> <span class="require">=</span> <span class="new">new</span> <span class="service">HostedPaymentData</span><span class="require">()</span><span class="require">;</span>
+                                        <br>
+                                            <span class="pl-3">$</span><span class="variables">hostedPaymentData</span><span class="require">-></span><span class="variables">customerEmail</span> <span class="require">= "</span><span class="green">customer@email.com</span><span class="require">";</span>
+                                        <br>
+                                            <span class="pl-3">$</span><span class="variables">hostedPaymentData</span><span class="require">-></span><span class="variables">customerPhoneMobile</span> <span class="require">= "</span><span class="green">34|914353028</span><span class="require">";</span>
+                                        <br>
+                                            <span class="pl-3">$</span><span class="variables">hostedPaymentData</span><span class="require">-></span><span class="variables">addressesMatch</span> <span class="require">= True;</span>
+                                        <br>
+                                            <span class="pl-3 comments">// Datos adicionales</span>
+                                        <br>
+                                            <span class="pl-3">$</span><span class="variables">hostedPaymentData</span><span class="require">-></span><span class="variables">challengeRequest</span> <span class="require">= "</span><span class="green">NO_PREFERENCE</span><span class="require">";</span>
+                                        <br>
+                                            <span class="pl-3">$</span><span class="variables">hostedPaymentData</span><span class="require">-></span><span class="variables">customerWorkNumber</span> <span class="require">= "</span><span class="green">44|07123456789</span><span class="require">";</span>
+                                        <br>
+                                            <span class="pl-3">$</span><span class="variables">hostedPaymentData</span><span class="require">-></span><span class="variables">accountAgeDate</span> <span class="require">= "</span><span class="green">20190110</span><span class="require">";</span>
+                                        <br>
+                                            <span class="pl-3">$</span><span class="variables">hostedPaymentData</span><span class="require">-></span><span class="variables">accountAgeIndicator</span> <span class="require">= "</span><span class="green">NO_ACCOUNT</span><span class="require">";</span>
+                                        <br>
+                                            <span class="pl-3">$</span><span class="variables">hostedPaymentData</span><span class="require">-></span><span class="variables">accountChangeDate</span> <span class="require">= "</span><span class="green">20190128</span><span class="require">";</span>
+                                        <br>
+                                            <span class="pl-3">$</span><span class="variables">hostedPaymentData</span><span class="require">-></span><span class="variables">customerHomeNumber</span> <span class="require">= "</span><span class="green">44|07123456789</span><span class="require">";</span>
+                                        <br>
+                                            <span class="pl-3">$</span><span class="variables">hostedPaymentData</span><span class="require">-></span><span class="variables">accountChangeIndicator</span> <span class="require">= "</span><span class="green">THIS_TRANSACTION</span><span class="require">";</span>
+                                        <br>
+                                            <span class="pl-3">$</span><span class="variables">hostedPaymentData</span><span class="require">-></span><span class="variables">accountPassChangeDate</span> <span class="require">= "</span><span class="green">20190115</span><span class="require">";</span>
+                                        <br>
+                                            <span class="pl-3">$</span><span class="variables">hostedPaymentData</span><span class="require">-></span><span class="variables">accountPassChangeIndicator</span> <span class="require">= "</span><span class="green">THIS_TRANSACTION</span><span class="require">";</span>
+                                        <br>
+                                            <span class="pl-3">$</span><span class="variables">hostedPaymentData</span><span class="require">-></span><span class="variables">accountPurchaseCount</span> <span class="require">= "</span><span class="green">3</span><span class="require">";</span>
+                                        <br>
+                                            <span class="pl-3">$</span><span class="variables">hostedPaymentData</span><span class="require">-></span><span class="variables">transactionType</span> <span class="require">= "</span><span class="green">GOODS_SERVICE_PURCHASE</span><span class="require">";</span>
+                                        <br>
+                                            <span class="pl-3">$</span><span class="variables">hostedPaymentData</span><span class="require">-></span><span class="variables">cardholderAccountIdentifier</span> <span class="require">= "</span><span class="green">1f0aae6b-0bac-479f-9ee5-29b9b6cf3aa0</span><span class="require">";</span>
+                                        <br>
+                                            <span class="pl-3">$</span><span class="variables">hostedPaymentData</span><span class="require">-></span><span class="variables">suspiciousActivity</span> <span class="require">= "</span><span class="green">SUSPICIOUS_ACTIVITY</span><span class="require">";</span>
+                                        <br>
+                                            <span class="pl-3">$</span><span class="variables">hostedPaymentData</span><span class="require">-></span><span class="variables">provisionAttemptsDay</span> <span class="require">= "</span><span class="green">1</span><span class="require">";</span>
+                                        <br>
+                                            <span class="pl-3">$</span><span class="variables">hostedPaymentData</span><span class="require">-></span><span class="variables">paymentAccountAge</span> <span class="require">= "</span><span class="green">201901101</span><span class="require">";</span>
+                                        <br>
+                                            <span class="pl-3">$</span><span class="variables">hostedPaymentData</span><span class="require">-></span><span class="variables">paymentAccountAgeIndicator</span> <span class="require">= "</span><span class="green">NO_ACCOUNT</span><span class="require">";</span>
+                                        <br>
+                                            <span class="pl-3">$</span><span class="variables">hostedPaymentData</span><span class="require">-></span><span class="variables">deliveryEmail</span> <span class="require">= "</span><span class="green">deliveryemail@email.com</span><span class="require">";</span>
+                                        <br>
+                                            <span class="pl-3">$</span><span class="variables">hostedPaymentData</span><span class="require">-></span><span class="variables">deliveryTimeframe</span> <span class="require">= "</span><span class="green">TWO_DAYS_OR_MORE</span><span class="require">";</span>
+                                        <br>
+                                            <span class="pl-3">$</span><span class="variables">hostedPaymentData</span><span class="require">-></span><span class="variables">shipIndicator</span> <span class="require">= "</span><span class="green">UNVERIFIED_ADDRESS</span><span class="require">";</span>
+                                        <br>
+                                            <span class="pl-3">$</span><span class="variables">hostedPaymentData</span><span class="require">-></span><span class="variables">shippingAddressUsage</span> <span class="require">= "</span><span class="green">20190128</span><span class="require">";</span>
+                                        <br>
+                                            <span class="pl-3">$</span><span class="variables">hostedPaymentData</span><span class="require">-></span><span class="variables">shippingAddressUsageIndicator</span> <span class="require">= "</span><span class="green">THIS_TRANSACTION</span><span class="require">";</span>
+                                        <br>
+                                            <span class="pl-3">$</span><span class="variables">hostedPaymentData</span><span class="require">-></span><span class="variables">shippingNameIndicator</span> <span class="require">= "</span><span class="green">TRUE</span><span class="require">";</span>
+                                        <br>
+                                            <span class="pl-3">$</span><span class="variables">hostedPaymentData</span><span class="require">-></span><span class="variables">preorderDate</span> <span class="require">= "</span><span class="green">20190212</span><span class="require">";</span>
+                                        <br>
+                                            <span class="pl-3">$</span><span class="variables">hostedPaymentData</span><span class="require">-></span><span class="variables">reorderItemIndicator</span> <span class="require">= "</span><span class="green">FIRST_TIME_ORDER</span><span class="require">";</span>
+                                        <br>
+                                            <span class="pl-3">$</span><span class="variables">hostedPaymentData</span><span class="require">-></span><span class="variables">transactionActivityDay</span> <span class="require">= "</span><span class="green">1</span><span class="require">";</span>
+                                        <br>
+                                            <span class="pl-3">$</span><span class="variables">hostedPaymentData</span><span class="require">-></span><span class="variables">transactionActivityYear</span> <span class="require">= "</span><span class="green">3</span><span class="require">";</span>
+                                        <br>
+                                            <span class="pl-3">$</span><span class="variables">hostedPaymentData</span><span class="require">-></span><span class="variables">giftCardAmount</span> <span class="require">= "</span><span class="green">250</span><span class="require">";</span>
+                                        <br>
+                                            <span class="pl-3">$</span><span class="variables">hostedPaymentData</span><span class="require">-></span><span class="variables">giftCardCount</span> <span class="require">= "</span><span class="green">1</span><span class="require">";</span>
+                                        <br>
+                                            <span class="pl-3">$</span><span class="variables">hostedPaymentData</span><span class="require">-></span><span class="variables">giftCardCurrency</span> <span class="require">= "</span><span class="green">EUR</span><span class="require">";</span>
+                                        <br>
+                                            <span class="pl-3">$</span><span class="variables">hostedPaymentData</span><span class="require">-></span><span class="variables">recurringMaxInstallments</span> <span class="require">= "</span><span class="green">5</span><span class="require">";</span>
+                                        <br>
+                                            <span class="pl-3">$</span><span class="variables">hostedPaymentData</span><span class="require">-></span><span class="variables">recurringExpiry</span> <span class="require">= "</span><span class="green">20190205</span><span class="require">";</span>
+                                        <br>
+                                            <span class="pl-3">$</span><span class="variables">hostedPaymentData</span><span class="require">-></span><span class="variables">recurringFrequency</span> <span class="require">= "</span><span class="green">25</span><span class="require">";</span>
+                                        <br>
+                                            <span class="pl-3">$</span><span class="variables">hostedPaymentData</span><span class="require">-></span><span class="variables">priorTransAuthMethod</span> <span class="require">= "</span><span class="green">FRICTIONLESS_AUTHENTICATION</span><span class="require">";</span>
+                                        <br>
+                                            <span class="pl-3">$</span><span class="variables">hostedPaymentData</span><span class="require">-></span><span class="variables">priorTransAuthIdentifier</span> <span class="require">= "</span><span class="green">26c3f619-39a4-4040-bf1f-6fd433e6d615</span><span class="require">";</span>
+                                        <br>
+                                            <span class="pl-3">$</span><span class="variables">hostedPaymentData</span><span class="require">-></span><span class="variables">priorTransAuthTimestamp</span> <span class="require">= "</span><span class="green">20190110125733</span><span class="require">";</span>
+                                        <br>
+                                            <span class="pl-3">$</span><span class="variables">hostedPaymentData</span><span class="require">-></span><span class="variables">priorTransAuthData</span> <span class="require">= "</span><span class="green">string</span><span class="require">";</span>
+                                        <br>
+                                            <span class="pl-3">$</span><span class="variables">hostedPaymentData</span><span class="require">-></span><span class="variables">cardLoginAuthType</span> <span class="require">= "</span><span class="green">MERCHANT_SYSTEM_AUTHENTICATION</span><span class="require">";</span>
+                                        <br>
+                                            <span class="pl-3">$</span><span class="variables">hostedPaymentData</span><span class="require">-></span><span class="variables">cardLoginAuthTimestamp</span> <span class="require">= "</span><span class="green">20180613110212</span><span class="require">";</span>
+                                        <br>
+                                            <span class="pl-3">$</span><span class="variables">hostedPaymentData</span><span class="require">-></span><span class="variables">cardLoginAuthData</span> <span class="require">= "</span><span class="green">string</span><span class="require">";</span>
+                                        <br>
+                                            <span class="pl-3">$</span><span class="variables">hostedPaymentData</span><span class="require">-></span><span class="variables">whiteListStatus</span> <span class="require">= "</span><span class="green">False</span><span class="require">";</span>
+                                        <br>
+                                        <br>
+                                            <span class="pl-3 comments">// Lanzamos la petición al servidor de Addon Payments</span>
+                                        <br>
+                                            <span class="pl-3 new">try</span><span class="require"> {</span>
+                                        <br>
+                                            <span class="pl-4">$</span><span class="variables">hppJson</span> <span class="require">=</span> $<span class="variables">service</span><span class="require">-></span><span class="configure">charge</span><span class="require">(</span><span class="variables">20</span><span class="require">)</span>
+                                        <br>
+                                            <span class="pl-5 require">-></span><span class="configure">withCurrency</span><span class="require">("</span><span class="green">EUR</span><span class="require">")</span>
+                                        <br>
+                                            <span class="pl-5 require">-></span><span class="configure">withHostedPaymentData</span><span class="require">(</span>$<span class="variables">hostedPaymentData</span><span class="require">)</span>
+                                        <br>
+                                            <span class="pl-5 require">-></span><span class="configure">withAddress</span><span class="require">(</span>$<span class="variables">billingAddress</span><span class="require">, </span><span class="service">AddressType</span><span class="require">::BILLING)</span>
+                                        <br>
+                                            <span class="pl-5 require">-></span><span class="configure">withAddress</span><span class="require">(</span>$<span class="variables">shippingAddress</span><span class="require">, </span><span class="service">AddressType</span><span class="require">::SHIPPING)</span>
+                                        <br>
+                                            <span class="pl-5 require">-></span><span class="configure">serialize</span><span class="require">();</span>
+                                        <br>
+                                        <br>
+                                            <span class="comments pl-4">// Mostramos el formulario</span>
+                                        <br>
+                                            <span class="pl-4 require">echo</span> $<span class="variables">hppJson</span><span class="require">;</span>
+                                        <br>
+                                        <br>
+                                            <span class="pl-3 require">}</span><span class="new"> catch</span> (<span class="service">ApiException</span> $<span class="variables">e</span>) <span class="require">{</span>
+                                        <br>
+                                            <span class="comments pl-4">// Añada aquí su tratamiento de errores</span>
+                                        <br>
+                                            <span class="pl-4 require">echo</span> $<span class="variables">e</span><span class="require">-></span><span class="configure">getMessage</span><span class="require">();</span>
+                                        <br>
+                                            <span class="pl-3 require">}</span>
+                                        <br>
+                                        <br>
+                                        <b>
+                                            <span class="etiqueta">?&gt;</span>
+                                        </b>
+                                    </code>
+                                </div>
+
+                                <p class="alert alert-primary" role="alert">
+                                    Puede ver todos los valores permitidos para cada propiedad en nuestra <a href="https://developer.globalpay.com/hpp/3d-secure-two#3d-secure-v2-hpp-request-optional">lista actualizada de parámetros.</a>
+                                </p>
+
+                            </div>            
+                        </div>
+
+                        <div class="contenedor">
+                            <div class="pl-3 pt-3 pr-3 pb-4 mb-3 text-justify">
+                                <h3 class="pt-1" id="authFlujos">
+                                    2. Flujos de autenticación
+                                </h3>
+    
+                                <hr>
+                                
+                                <p>
+                                    En este punto, el Emisor analizará la transacción. Tendrá en cuenta factores como los datos que su aplicación ha proporcionado junto con el comportamiento histórico del cliente y el análisis de transacciones.
+                                     El resultado de este proceso determinará si el Emisor decide que el cliente debe autenticar aún más la transacción y realizar una comprobación con el ACS (flujo con fricción).
+                                </p>
+    
+                                <hr>
+    
+                                <h5 class="pt-1" id="flujoSinFric">
+                                    2.1 Flujo sin fricción
+                                </h5>
+                                
+                                <p>
+                                    En un flujo sin fricciones, el Emisor puede determinar que no se requiere autenticación adicional, que la transacción puede continuar.
+                                     O en base a la información que ha recibido hasta ahora, que la transacción no debería continuar.
+                                </p>
+    
+                                <p>
+                                    En un escenario de transacción bloqueada, Addon Payments devolverá un mensaje de respuesta de falla a su aplicación/sitio web y puede optar por redirigir al cliente a la página de pago mientras le informa del resultado.
+                                     De lo contrario, el HPP completará el proceso de autenticación y procederá a la autorización, incluidos los datos de autenticación de 3D Secure.
+                                </p>
+                                
+                                <hr>
+    
+                                <h5 class="pt-1" id="flujoConFric">
+                                    2.2 Flujo con fricción
+                                </h5>
+                                
+                                <p>
+                                    En el caso de un flujo de fricción, el Emisor ha determinado que el cliente debe autenticar aún más la transacción.
+                                     El HPP mostrará el Emisor ACS al cliente.
+                                      El desafío puede implicar una serie de pasos, incluido que el cliente ingrese una contraseña de un solo uso enviada a su teléfono o responda algunas preguntas que solo él sabría responder.
+                                </p>
+                                <p>
+                                    El Emisor ACS determinará el tipo de desafío que se mostrará al cliente y se alineará con al menos dos elementos de la autenticación sólida del cliente (SCA):
+                                    <ul>
+                                        <li><b>Possession:</b> Algo que solo el cliente tiene, por ejemplo, su dispositivo móvil registrado en su banco en el que recibirá un código en un SMS.</li>
+                                        <li><b>Inherence:</b> Su huella digital u otra forma de datos biométricos.</li>
+                                        <li><b>Knowledge:</b> Una frase de contraseña única o la respuesta a una pregunta personal.</li>
+                                    </ul>
+                                </p>
+
+                                <hr>
+
+                                <h5 class="pt-1" id="simulador">
+                                    2.3 Simulador ACS
+                                </h5>
+
+                                <p>
+                                    En el entorno sandbox (pruebas), Addon Payments proporciona un simulador de Emisor ACS que le permite probar diferentes resultados de desafíos.
+                                </p>
+    
+                                <p>
+                                    Una vez que se haya cargado el desafío, después de diez segundos, el simulador completará automáticamente la autenticación y generará una respuesta de Autenticación exitosa (transStatus = “Y”).
+                                     Esto tiene la intención de imitar un escenario en el que un cliente ha recibido una notificación en su teléfono para autenticarse usando su aplicación bancaria.
+                                </p>
+    
+                                <p>
+                                    Para simular una autenticación fallida, hacer clic en el botón "Cancelar" generará una respuesta fallida (transStatus = “N”).
+                                     En cualquier escenario, el resultado se enviará en el mensaje de respuesta de desafío (CRes) al punto final de notificación de desafío.
+                                </p>
+                                <div class="col-12 text-center">
+                                    <img src="../../../../assets/img/3ds2ACS.png" alt="Simulador ACS">
+                                </div>
+
+                                <hr>
+
+                                <h5 class="pt-1" id="resultadoDesafio">
+                                    2.4 Resultado del desafío
+                                </h5>
+
+                                <p>
+                                    Con el cliente en el ACS, pueden ocurrir los siguientes resultados:
+                                    <ul>
+                                        <li>La autenticación es exitosa.</li>
+                                        <li>La autenticación falla y el cliente no tiene otra oportunidad.</li>
+                                        <li>La autenticación falla y el cliente tiene otra oportunidad.</li>
+                                    </ul>
+                                </p>
+
+                                <p>
+                                    Si el cliente ha completado con éxito el desafío y se ha autenticado, Addon Payments procederá a la autorización e incluirá los datos de autenticación de 3D Secure.
+                                     Alternativamente, en un escenario de transacción bloqueada, HPP devolverá un mensaje de respuesta de fallo (110).
+                                </p>
+
+                                <p>
+                                    En este punto, tanto en escenarios sin fricciones como en escenarios de desafío,
+                                     la transacción puede autorizarse o declinarse de manera normal en función de si el cliente tiene fondos suficientes en su cuenta o si ingresó su código de seguridad correctamente, etc.
+                                      Addon Payments devolverá la respuesta de la transacción junto con los datos de autenticación de 3D Secure adicionales que puede capturar en su sitio web/aplicación.
+                                </p>
+    
+                            </div>   
+                        </div>
+
+                        <div class="contenedor">
+                            <div class="pl-3 pt-3 mb-2 pb-2 pr-3 text-justify">
+                                <h3 class="pt-1" id="FormEjemplo1">
+                                    3. Formulario de ejemplo
+                                </h3>
+                                
+                                <hr>
+
+                                <p>
+                                    Para poder procesar la transacción con el formulario de ejemplo, debe modificar el archivo "Authorization.php" que se encuentra en la ruta "vendor\addonpayments\php-sdk\test\php\HPP\05 - 3DS2\01 - Autorización".
+                                </p>
+                                <p>
+                                    Debe introducir sus datos de configuración tal y como se muestra en el punto 2.1 de esta guía.
+                                </p>
+
+                                <hr>
+                                <h5 id="Formulario" class="mt-3">3.1 Formulario</h5>
+
+                                <p>
+                                    El siguiente formulario le permite enviar una operación contra el entorno de pruebas de Addon Payments.
+                                </p>
+
+                                <div class="row justify-content-around">
+                                    <div class="col-lg-4">
+                                        <div class="row">
+                                            <div class="col-lg-12 pt-3 mt-2 mb-2 formulario">
+                                                <div class="form-group row">
+                                                    <div class="col-sm-12">
+                                                        <button type="submit" id="payButtonId" class="btn btn-block btn-primary">Enviar petición</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <hr>
+
+                                <h5 id="respuestaForm">
+                                    3.2 Respuesta de la operación
+                                </h5>
+
+                                <small class="form-text text-muted alert alert-primary">
+                                    --&gt; La respuesta se muestra al final de cada operación dentro del dominio de la pasarela de pagos. Si desea modificar dicha respuesta, puede acceder al archivo "response.php" y  modificar los valores que quiera mostrar en la pasarela de pagos. Para obtener más información sobre la excepción de "try - catch" puede ver la <a target="_blank" href="https://www.php.net/manual/es/language.exceptions.php">documentación oficial de PHP.</a>
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /Punto 3 -->
+                    
+                    </div>
+                    <!-- /Contenido común -->
+
+                </div>
+            </div>
+        </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <!-- Enviar formulario PASO 1-->
+    <script>
+        $(document).ready(function() {
+            $.getJSON("Authorization.php", function(jsonFromRequestEndpoint) {
+              RealexHpp.setHppUrl("https://hpp.sandbox.addonpayments.com/pay");
+              // When using full page redirect your Response URL must be an absolute link
+              RealexHpp.redirect.init("payButtonId", "https://dominio.com3ds2/Hpp/Autorizacion/response.php", jsonFromRequestEndpoint);
+            });
+        });
+    </script>
+
+</body>
+</html>
