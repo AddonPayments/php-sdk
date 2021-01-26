@@ -253,6 +253,8 @@
                                         <br>
                                             <span class="pl-3">$</span><span class="variables">config</span><span class="require">-></span><span class="variables">sharedSecret</span> <span class="require">= "</span><span class="green">Shared_Secret</span><span class="require">";</span>
                                         <br>
+                                            <span class="pl-3">$</span><span class="variables">config</span><span class="require">-></span><span class="variables">channel</span> <span class="require">= "</span><span class="green">ECOM</span><span class="require">";</span> <span class="comments">// Puede ser MOTO o ECOM según la operativa que quiera realizar</span>
+                                        <br>
                                             <span class="pl-3">$</span><span class="variables">config</span><span class="require">-></span><span class="variables">serviceUrl</span> <span class="require">= "</span><span class="green">URL</span><span class="require">";</span>
                                         <br>
                                             <span class="pl-3 service">ServicesContainer</span><span class="configure">::configure</span><span class="require">(</span>$<span class="variables">config</span><span class="require">);</span>

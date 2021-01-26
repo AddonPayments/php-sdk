@@ -47,19 +47,16 @@ $shippingAddress->country = "840";
 
 // Lanzamos la petición al servidor de Addon Payments
 try {
-$hppJson = $service->charge(20)
-->withCurrency("EUR")
-->withHostedPaymentData($hostedPaymentData)
-->withAddress($billingAddress, AddressType::BILLING)
-->withAddress($shippingAddress, AddressType::SHIPPING)
-->serialize();
+    $hppJson = $service->charge(20)
+        ->withCurrency("EUR")
+        ->withHostedPaymentData($hostedPaymentData)
+        ->withAddress($billingAddress, AddressType::BILLING)
+        ->withAddress($shippingAddress, AddressType::SHIPPING)
+        ->serialize();
 
-// Mostramos el formulario
-echo $hppJson;
-
+    // Mostramos el formulario
+    echo $hppJson;
 } catch (ApiException $e) {
-// Añada aquí su tratamiento de errores
-echo $e->getMessage();
+    // Añada aquí su tratamiento de errores
+    echo $e->getMessage();
 }
-
-?>

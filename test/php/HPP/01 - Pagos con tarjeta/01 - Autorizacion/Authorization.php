@@ -21,6 +21,7 @@ $config->merchantId = "addonphptest";
 $config->accountId = "internet";
 $config->sharedSecret = "secret";
 $config->serviceUrl = "https://hpp.sandbox.addonpayments.com/pay";
+$config->channel = "ECOM";
 $config->hostedPaymentConfig = new HostedPaymentConfig();
 $config->hostedPaymentConfig->version = HppVersion::VERSION_2;
 $service = new HostedService($config);
@@ -38,5 +39,3 @@ try {
     // Añada aquí el tratamiento de errores
     echo '<b>Error al procesar su solicitud: </b>'.$e->getMessage();
 }
-
-?>

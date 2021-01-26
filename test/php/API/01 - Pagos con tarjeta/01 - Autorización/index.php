@@ -246,6 +246,8 @@
                                         <br>
                                             <span class="pl-3">$</span><span class="variables">config</span><span class="require">-></span><span class="variables">sharedSecret</span> <span class="require">= "</span><span class="green">Shared_Secret</span><span class="require">";</span>
                                         <br>
+                                            <span class="pl-3">$</span><span class="variables">config</span><span class="require">-></span><span class="variables">channel</span> <span class="require">= "</span><span class="green">ECOM</span><span class="require">";</span> <span class="comments">// Puede ser MOTO o ECOM según la operativa que quiera realizar</span>
+                                        <br>
                                             <span class="pl-3">$</span><span class="variables">config</span><span class="require">-></span><span class="variables">serviceUrl</span> <span class="require">= "</span><span class="green">URL</span><span class="require">";</span>
                                         <br>
                                             <span class="pl-3 service">ServicesContainer</span><span class="configure">::configure</span><span class="require">(</span>$<span class="variables">config</span><span class="require">);</span>
@@ -364,6 +366,13 @@
                                        <li>
                                            Shared Secret = Contraseña de seguridad del terminal.
                                        </li>
+                                       <li>
+                                           Channel = Se utiliza para especificar el tipo de transacción. Valores permitidos:
+                                           <ul>
+                                               <li>ECOM - Transacción de comercio electrónico</li>
+                                               <li>MOTO - Transacción de pedido por correo/teléfono</li>
+                                           </ul>
+                                       </li>
                                     </ul>
                                     <small class="form-text text-muted alert alert-primary">
                                         --&gt; En caso de que le falte algún dato de los mencionados arriba, debe contactar con su soporte técnico de Addon Payments llamando al teléfono 914 353 028 (opción 2) o enviando un email al correo electrónico <a target="_blank" href="mailto:soporteaddonpayments.com">soporteaddonpayments.com</a>.
@@ -382,6 +391,8 @@
                                                 <span class="pl-3">$</span><span class="variables">config</span><span class="require">-></span><span class="variables">accountId</span> <span class="require">= "</span><span class="green">Sub_Account</span><span class="require">";</span> <span class="comments">// Subcuenta asociada a su identificador</span>
                                             <br>
                                                 <span class="pl-3">$</span><span class="variables">config</span><span class="require">-></span><span class="variables">sharedSecret</span> <span class="require">= "</span><span class="green">Shared_Secret</span><span class="require">";</span> <span class="comments">// Contraseña del terminal</span>
+                                            <br>
+                                                <span class="pl-3">$</span><span class="variables">config</span><span class="require">-></span><span class="variables">channel</span> <span class="require">= "</span><span class="green">ECOM</span><span class="require">";</span> <span class="comments">// Puede ser MOTO o ECOM según la operativa que quiera realizar</span>
                                             <br>
                                                 <span class="pl-3">$</span><span class="variables">config</span><span class="require">-></span><span class="variables">serviceUrl</span> <span class="require">= "</span><span class="green">URL</span><span class="require">";</span> <span class="comments">// Se debe emplear una de las siguientes URL's:</span>
                                                 <br>
