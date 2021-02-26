@@ -56,14 +56,14 @@
                       <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                           <div class="dropdown-header text-center p-0">API</div>
                           <hr class="m-0 p-0">
-                                <a class="dropdown-item pl-2" href="../../../API/01%20-%20Pagos%20con%20tarjeta/01%20-%20Autorización/index.php">Autorización</a>
-                                <a class="dropdown-item pl-2" href="../../../API/01%20-%20Pagos%20con%20tarjeta/01%20-%20Autorización/DatosDelCliente.php">Datos adicionales</a>
+                                <a class="dropdown-item pl-2" href="../../../API/01%20-%20Pagos%20con%20tarjeta/01%20-%20Authorization/index.php">Autorización</a>
+                                <a class="dropdown-item pl-2" href="../../../API/01%20-%20Pagos%20con%20tarjeta/01%20-%20Authorization/DatosDelCliente.php">Datos adicionales</a>
                                 <a class="dropdown-item pl-2" href="#">OTB</a>
                                 <a class="dropdown-item pl-2" href="../../../API/01%20-%20Pagos%20con%20tarjeta/03%20-%20Credit/index.php">Credit</a>
                             <hr class="m-0 p-0">
                           <div class="dropdown-header text-center p-0">HPP</div>
                           <hr class="m-0 p-0">
-                              <a class="dropdown-item pl-2" href="../01%20-%20Autorizacion/index.php">Autorización</a>
+                              <a class="dropdown-item pl-2" href="../01%20-%20Authorization/index.php">Autorización</a>
                               <a class="dropdown-item pl-2 active" href="#">OTB</a>
                               <a class="dropdown-item pl-2" href="../03%20-%20Pay%20By%20Link/index.php">Pay By Link</a>
                               <a class="dropdown-item pl-2" href="../04%20-%20Auth%20con%20iframe/index.php">Iframe</a>
@@ -97,9 +97,9 @@
                           Gestión de transacciones
                       </a>
                       <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                          <a class="dropdown-item pl-2" href="../../../API/03%20-%20Gestión%20de%20transacciones/01%20-%20Capturar/index.php">Settle (Capturar)</a>
-                          <a class="dropdown-item pl-2" href="../../../API/03%20-%20Gestión%20de%20transacciones/02%20-%20Rebate/index.php">Rebate (Devolución)</a>
-                          <a class="dropdown-item pl-2" href="../../../API/03%20-%20Gestión%20de%20transacciones/03%20-%20Void/index.php">Void (Anular transacción)</a>
+                          <a class="dropdown-item pl-2" href="../../../API/03%20-%20Gestion%20de%20transacciones/01%20-%20Capturar/index.php">Settle (Capturar)</a>
+                          <a class="dropdown-item pl-2" href="../../../API/03%20-%20Gestion%20de%20transacciones/02%20-%20Rebate/index.php">Rebate (Devolución)</a>
+                          <a class="dropdown-item pl-2" href="../../../API/03%20-%20Gestion%20de%20transacciones/03%20-%20Void/index.php">Void (Anular transacción)</a>
                       </div>
                   </li>
 
@@ -143,11 +143,11 @@
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             <div class="dropdown-header text-center p-0">API</div>
                             <hr class="m-0 p-0">
-                                <a class="dropdown-item pl-2" href="../../../API/06%20-%203DS2/01%20-%20Autorización/index.html">Autorización</a>
+                                <a class="dropdown-item pl-2" href="../../../API/06%20-%203DS2/01%20-%20Authorization/index.html">Autorización</a>
                             <hr class="m-0 p-0">
                             <div class="dropdown-header text-center p-0">HPP</div>
                             <hr class="m-0 p-0">
-                                <a class="dropdown-item pl-2" href="../../05%20-%203DS2/01%20-%20Autorización/index.html">Autorización</a>
+                                <a class="dropdown-item pl-2" href="../../05%20-%203DS2/01%20-%20Authorization/index.html">Autorización</a>
                                 <a class="dropdown-item pl-2" href="../../05%20-%203DS2/02%20-%20Datos%20adicionales/index.html">Datos adicionales</a>
                         </div>
                    </li>
@@ -202,7 +202,7 @@
                          Open To Buy (OTB) permite verificar que una tarjeta sigue siendo válida y activa sin procesar realmente un pago contra ella. Las comprobaciones del código de seguridad (CVN) y AVS también se realizarán en su contra. Esta es una alternativa a cargar a la tarjeta una pequeña cantidad (por ejemplo 10 céntimos) para obtener el mismo resultado.
                       </p>
                       <p class="alert alert-danger" role="alert">
-                          Recomendamos encarecidamente sanear los datos del titular de la tarjeta antes de enviarla en la solicitud. Por ejemplo, debe comprobar que el número de tarjeta es válido y que la fecha de caducidad es correcta. <a target="_blank" href="https://github.com/globalpayments/rxp-js">Nuestra biblioteca JS</a> contiene un conjunto de funciones útiles que le ayudan a procesar las solicitudes correctamente.
+                          Recomendamos encarecidamente sanear los datos del titular de la tarjeta antes de enviarla en la solicitud. Por ejemplo, debe comprobar que el número de tarjeta es válido y que la fecha de caducidad es correcta. <a target="_blank" href="https://github.com/AddonPayments/js-sdk">Nuestra biblioteca JS</a> contiene un conjunto de funciones útiles que le ayudan a procesar las solicitudes correctamente.
                           <small class="form-text text-muted">
                               --> En los ejemplos de esta documentación usamos el fichero de comprobación JS rxp-hpp.js de RealexPayments.  Podrá ver el fichero en la carpeta de "assets/js".
                           </small>
@@ -489,6 +489,12 @@
                               <span class="arrow">redirect.init(</span><span class="comentariosBgW">"payButtonId"</span><span class="arrow">,</span> <span class="comentariosBgW">"response.php"</span><span class="arrow">);</span>
                           </li>
                       </ul>
+
+                      <small class="form-text text-muted alert alert-warning">
+                            Si queremos mostrar errores más detallados por consola, debemos setear a "true" el siguiente parámetro:
+                            <span class="arrow">setDebugErrors(</span><span class="comentariosBgW">true</span><span class="arrow">);</span>
+                      </small>
+                        
                       <div class="p-4 mb-4 panelCode">
                         <code>
                                 <span class="pl-2 new"><</span><span class="script">script</span><span class="new">></span>
@@ -498,6 +504,8 @@
                                 <span class="pl-5">$.</span><span class="new">getJSON(</span><span class="require">"</span><span class="green">request.php</span><span class="require">"</span><span class="new">,</span> <span class="function">function</span><span class="require">(</span><span class="orange">jsonFromRequestEndpoint</span><span class="require">) {</span>
                             <br>
                                 <span class="pl-5 service">RealexHpp</span><span class="new">.setHppUrl(</span><span class="require">"</span><span class="green">https://hpp.sandbox.addonpayments.com/pay</span><span class="require">"</span><span class="new">);</span>
+                            <br>
+                                <span class="pl-5 comments">// RealexHpp.setDebugErrors(true);</span>
                             <br>
                                 <span class="pl-5 service">RealexHpp</span><span class="new">.redirect.init(</span><span class="require">"</span><span class="green">payButtonId</span><span class="require">"</span><span class="new">,</span> <span class="require">"</span><span class="green">response.php</span><span class="require">"</span><span class="new">,</span> <span class="variables">jsonFromRequestEndpoint</span><span class="new">);</span>
                             <br>
@@ -581,9 +589,11 @@
     <script>
       $(document).ready(function() {
         $.getJSON("otb.php", function(jsonFromRequestEndpoint) {
-          RealexHpp.setHppUrl("https://hpp.sandbox.addonpayments.com/pay");
-          // When using full page redirect your Response URL must be an absolute link
-          RealexHpp.redirect.init("payButtonId", "https://midominio.es/response.php", jsonFromRequestEndpoint);
+            RealexHpp.setHppUrl("https://hpp.sandbox.addonpayments.com/pay");
+            // For develop purpose, set to true this parameter
+            RealexHpp.setDebugErrors(true);
+            // When using full page redirect your Response URL must be an absolute link
+            RealexHpp.redirect.init("payButtonId", "https://midominio.es/response.php", jsonFromRequestEndpoint);
           });
       });
     </script>

@@ -1,19 +1,38 @@
+/*! js-sdk - v2.1.0 - 2021-02-26
+ * The official Addon Payments JS Library
+ * https://github.com/AddonPayments/js-sdk
+ * Licensed MIT
+ */
 /*jslint browser:true */
 var RealexHpp = (function () {
 
 	'use strict';
 
 	var hppUrl = "https://hpp.addonpayments.com/pay";
+	var debugSet = false;
 
 	var randomId = randomId || Math.random().toString(16).substr(2,8);
+	var errors = [];
 
 	var setHppUrl = function(url) {
 		hppUrl = url;
 	};
 
+	var setDebugErrors = (val) => {
+		debugSet = val;
+	}
+
+	var debugErrors = () => {
+		if (debugSet) {
+			console.error(errors);
+		}
+	};
+
+
 	var isWindowsMobileOs = /Windows Phone|IEMobile/.test(navigator.userAgent);
 	var isAndroidOrIOs = /Android|iPad|iPhone|iPod/.test(navigator.userAgent);
-	var isMobileXS =  ( (((window.innerWidth > 0) ? window.innerWidth : screen.width) <= 360 ? true : false) || (((window.innerHeight > 0) ? window.innerHeight : screen.Height) <= 360 ? true : false)) ;
+	var isMobileXS = ((((window.innerWidth > 0) ? window.innerWidth : screen.width) <= 360 ? true : false) || (((window.innerHeight > 0) ? window.innerHeight : screen.Height) <= 360 ? true : false));
+	
 
 	// Display IFrame on WIndows Phone OS mobile devices
 	var isMobileIFrame = isWindowsMobileOs;
@@ -143,7 +162,7 @@ var RealexHpp = (function () {
 				var parser = internal.getUrlParser(window.location.href);
 				var hppOriginParam = parser.protocol + '//' + parser.host;
 
-				form.appendChild(internal.createFormHiddenInput("MERCHANT_RESPONSE_URL", hppOriginParam));
+				form.appendChild(internal.createFormHiddenInput("HPP_POST_RESPONSE", hppOriginParam));
 				form.appendChild(internal.createFormHiddenInput("HPP_POST_DIMENSIONS", hppOriginParam));
 			}
 			return form;
@@ -292,8 +311,16 @@ var RealexHpp = (function () {
 					return;
 				}
 
+				let result;
+				
+				try {
+					result = JSON.parse(event.data);
+				} catch {
+					result = null;
+				}
+
 				// check for iframe resize values
-				if (event.data && JSON.parse(event.data).iframe) {
+				if (result && result.iframe) {
 					if (!isMobileNewTab) {
 						var iframeWidth = JSON.parse(event.data).iframe.width;
 						var iframeHeight = JSON.parse(event.data).iframe.height;
@@ -389,6 +416,30 @@ var RealexHpp = (function () {
 				lightbox: function () {
 					if (isMobileNewTab) {
 						tabWindow = internal.openWindow(token);
+
+						// Check for errors when opening the Lightbox
+						if (tabWindow == null || typeof(tabWindow) === 'undefined') {
+							if (/iPad|iPhone|iPod/.test(navigator.userAgent) === true && /Safari/.test(navigator.userAgent)) {
+								if (errors.indexOf('ios-new-tab-blocker') === -1) {
+									errors.push('ios-new-tab-blocker: iOS blocks the opening of a new tab, please contact the support team');
+								}
+
+								debugErrors(errors);
+							} else if(/Android/.test(navigator.userAgent) === true) {
+								if (errors.indexOf('android-new-tab') === -1) {
+									errors.push('android-new-tab: Information of the browser used' + navigator.userAgent);
+								}
+
+								debugErrors(errors);
+							} else {
+								if (errors.indexOf('otherError-new-tab') === -1) {
+									errors.push('otherError-new-tab: Information of the browser used' + navigator.userAgent);
+								}
+
+								debugErrors(errors);
+							}
+						}
+
 					} else {
 						overlayElement = internal.createOverlay();
 						var temp = internal.createIFrame(overlayElement, token);
@@ -420,6 +471,17 @@ var RealexHpp = (function () {
 				return instance;
 			},
 			init: function (idOfLightboxButton, merchantUrl, serverSdkJson) {
+				if (
+					(serverSdkJson["MERCHANT_ID"] && serverSdkJson["HPP_VERSION"] && serverSdkJson["ORDER_ID"] && serverSdkJson["SHA1HASH"] && serverSdkJson["TIMESTAMP"]) === undefined
+				) {
+					if (errors.indexOf('undefined-json-response-iframe') === -1) {
+						errors.push('undefined-json-response-iframe: Check that you are sending the mandatory parameters https://desarrolladores.addonpayments.com/#!/hpp/transaction-processing');
+					}
+					debugErrors(errors);
+					console.error('Response of server :>> ');
+					console.table(serverSdkJson);
+				}
+
 				//Get the lightbox instance (it's a singleton) and set the sdk json
 				var lightboxInstance = RxpLightbox.getInstance(serverSdkJson);
 
@@ -492,6 +554,17 @@ var RealexHpp = (function () {
 				return instance;
 			},
 			init: function (idOfEmbeddedButton, idOfTargetIframe, merchantUrl, serverSdkJson) {
+				if (
+					(serverSdkJson["MERCHANT_ID"] && serverSdkJson["HPP_VERSION"] && serverSdkJson["ORDER_ID"] && serverSdkJson["SHA1HASH"] && serverSdkJson["TIMESTAMP"]) === undefined
+				) {
+					if (errors.indexOf('undefined-json-response-embedded') === -1) {
+						errors.push('undefined-json-response-embedded: Check that you are sending the mandatory parameters https://desarrolladores.addonpayments.com/#!/hpp/transaction-processing');
+					}
+					debugErrors(errors);
+					console.error('Response of server :>> ');
+					console.table(serverSdkJson);
+				}
+
 				//Get the embedded instance (it's a singleton) and set the sdk json
 				var embeddedInstance = RxpEmbedded.getInstance(serverSdkJson);
 
@@ -557,6 +630,17 @@ var RealexHpp = (function () {
 				return instance;
 			},
 			init: function (idOfButton, merchantUrl, serverSdkJson) {
+				if (
+					(serverSdkJson["MERCHANT_ID"] && serverSdkJson["HPP_VERSION"] && serverSdkJson["ORDER_ID"] && serverSdkJson["SHA1HASH"] && serverSdkJson["TIMESTAMP"]) === undefined
+				) {
+					if (errors.indexOf('undefined-json-response-hpp') === -1) {
+						errors.push('undefined-json-response-hpp: Check that you are sending the mandatory parameters https://desarrolladores.addonpayments.com/#!/hpp/transaction-processing');
+					}
+					debugErrors(errors);
+					console.error('Response of server :>> ');
+					console.table(serverSdkJson);
+				}
+
 				// Get the redirect instance (it's a singleton) and set the sdk json
 				var redirectInstance = RxpRedirect.getInstance(serverSdkJson);
 				redirectUrl = merchantUrl;
@@ -590,6 +674,7 @@ var RealexHpp = (function () {
 			init: RxpRedirect.init
 		},
 		setHppUrl: setHppUrl,
+		setDebugErrors: setDebugErrors,
 		_internal: internal
 	};
 

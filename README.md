@@ -53,6 +53,8 @@ git clone https://github.com/addonpayments/php-sdk
 
 Puede encontrar una documentación adaptada a cada operativa de pago, ejecutando el archivo "index.php" desde su servidor.
 
+La documentación contiene las validaciones del proyecto oficial de [JavaScript](https://github.com/AddonPayments/js-sdk) Addon Payments. También las puede encontrar en la ruta del proyecto "[test/assets/js](https://github.com/AddonPayments/php-sdk/tree/master/test/assets/js)".
+
 Este archivo se encuentra dentro de la carpeta "test" del SDK. Si lo prefiere, también puede ver nuestra documentación oficial en la página web de desarrolladores de [Addon Payments](https://desarrolladores.addonpayments.com) donde encontrará además tarjetas con las que realizar pruebas de compra y el resto de librerías disponibles.
 
 *Consejo rápido*: ¡[El paquete de pruebas incluido](https://github.com/addonpayments/php-sdk/tree/master/test) puede ser una gran fuente de ejemplos de código para usar el SDK!

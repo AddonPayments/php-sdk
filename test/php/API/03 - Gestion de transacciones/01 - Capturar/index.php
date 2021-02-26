@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="author" content="Víctor Cantera">
         <link rel="icon" href="../../../../assets/img/comercia_ico.png" type="image/x-icon"/ >
-        <title>Rebate - SDK PHP</title>
+        <title>Settle - SDK PHP</title>
 
         <!-- Bootstrap 4.3.1 -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -60,7 +60,7 @@
                             <hr class="m-0 p-0">
                             <div class="dropdown-header text-center p-0">HPP</div>
                             <hr class="m-0 p-0">
-                                <a class="dropdown-item pl-2" href="../../../HPP/01%20-%20Pagos%20con%20tarjeta/01%20-%20Autorizacion/index.php">Autorización</a>
+                                <a class="dropdown-item pl-2" href="../../../HPP/01%20-%20Pagos%20con%20tarjeta/01%20-%20Authorization/index.php">Autorización</a>
                                 <a class="dropdown-item pl-2" href="../../../HPP/01%20-%20Pagos%20con%20tarjeta/02%20-%20OTB/index.php">OTB</a>
                                 <a class="dropdown-item pl-2" href="../../../HPP/01%20-%20Pagos%20con%20tarjeta/03%20-%20Pay%20By%20Link/index.php">Pay By Link</a>
                                 <a class="dropdown-item pl-2" href="../../../HPP/01%20-%20Pagos%20con%20tarjeta/04%20-%20Auth%20con%20iframe/index.php">Iframe</a>
@@ -94,8 +94,8 @@
                             Gestión de transacciones
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item pl-2" href="../01%20-%20Capturar/index.php">Settle (Capturar)</a>
-                            <a class="dropdown-item pl-2 active" href="#">Rebate (Devolución)</a>
+                            <a class="dropdown-item pl-2 active" href="#">Settle (Capturar)</a>
+                            <a class="dropdown-item pl-2" href="../02%20-%20Rebate/index.php">Rebate (Devolución)</a>
                             <a class="dropdown-item pl-2" href="../03%20-%20Void/index.php">Void (Anular transacción)</a>
                         </div>
                     </li>
@@ -166,7 +166,7 @@
 
                         <nav class="navbar sticky-top navbar-light" style="padding: 0px;">
                             <nav class="nav nav-pills flex-column">
-                                <a class="nav-link" href="#rebate">1. Rebate (Devolver transacción)</a>
+                                <a class="nav-link" href="#settle">1. Settle (Capturar)</a>
                                 <nav class="nav nav-pills flex-column">
                                     <a class="nav-link ml-3 my-1" href="#codigoEjemplo">1.1 Código de ejemplo</a>
                                 </nav>
@@ -174,7 +174,7 @@
                                 <nav class="nav nav-pills flex-column">
                                     <a class="nav-link ml-3 my-1" id="#ConfigTerminal" href="#ConfigTerminal">2.1 Configuración del terminal</a>
                                     <a class="nav-link ml-3 my-1" id="#datosOrg" href="#datosOrg">2.2 Datos de la transacción original</a>
-                                    <a class="nav-link ml-3 my-1" id="#envioOP" href="#envioOP">2.3 Envío de la petición de Rebate</a>
+                                    <a class="nav-link ml-3 my-1" id="#envioOP" href="#envioOP">2.3 Envío de la petición de Settle</a>
                                 </nav>
                                 <a class="nav-link" href="#FormEjemplo1">3. Formulario de ejemplo</a>
                                 <nav>
@@ -189,23 +189,21 @@
                         <!-- Punto 1 -->
                         <div class="contenedor">
                             <div class="pl-3 pt-3 pr-3 pb-4 mb-3 text-justify">
-                                <h3 id="rebate" class="titulo">
-                                    1. Rebate (Devolver transacción)
+                                <h3 id="settle" class="titulo">
+                                    1. Settle (Capturar)
                                 </h3>
                                 <hr>
 
                                 <p>
-                                   Un Rebate es una devolución a una autorización existente capturada con éxito. Para que se acepte la solicitud, debe proporcionar el ID de pedido original, la Referencia de pagos (pasref) y el Código de autenticación de la respuesta de autorización. Las transacciones se pueden reembolsar hasta el 115% del importe de la autorización original y la moneda original también se debe enviar en la solicitud.
+                                   Este tipo de solicitud se utiliza para liquidar una transacción anteriormente preautorizada y colocarla en el siguiente archivo de liquidación que se enviará al adquirente. La cantidad de tiempo que los fondos pueden permanecer bloqueados en la tarjeta del cliente puede variar entre diferentes Emisores y Adquisidores. Los esquemas de tarjetas (por ejemplo, Visa y MasterCard) también tienen sus propias reglas sobre cuánto tiempo pueden esperar las transacciones para ser capturadas. Consulte con CaixaBank (o su Adquirente) para obtener más información.
+                                </p>
 
-                                   Para procesar un reembolso, debe proporcionar la contraseña de Rebate que puede establecer con un miembro de nuestro equipo de soporte <a target="_blank" href="mailto:soporte@addonpayments.com">Addon Payments</a>. Esta contraseña debe cifrarse utilizando el algoritmo SHA-1 antes de agregarse a la solicitud.
+                                <p>
+                                    Las transacciones se pueden capturar hasta el 115% del monto de la autorización original.
                                 </p>
                                 
                                 <p class="alert alert-primary" role="alert">
-                                    Es posible procesar múltiples reembolsos contra una transacción. Sin embargo, esto no está habilitado de forma predeterminada en su cuenta de comercio. En caso de querer activar esta operativa, deben contactar con el equipo de soporte para su activación. 
-
-                                    <small class="form-text text">
-                                        --> Puede contactar con nosotros llamando al teléfono <a target="_blank" href="tel:914353028">914 353 028 opción 2</a> o enviándonos un email a <a target="_blank" href="mailto:soporte@addonpayments.com">soporte@addonpayments.com.</a>
-                                    </small>
+                                    Las transacciones 3D Secure deben liquidarse por el importe de la autorización original para aprovechar la protección de contracargo.
                                 </p>
 
                                 <h5 style="" class="pt-3" id="codigoEjemplo">
@@ -245,8 +243,6 @@
                                         <br>
                                             <span class="pl-3">$</span><span class="variables">config</span><span class="require">-></span><span class="variables">sharedSecret</span> <span class="require">= "</span><span class="green">Shared_Secret</span><span class="require">";</span>
                                         <br>
-                                            <span class="pl-3">$</span><span class="variables">config</span><span class="require">-></span><span class="variables">refundPassword</span> <span class="require">= "</span><span class="green">Rebate_Password</span><span class="require">";</span>
-                                        <br>
                                             <span class="pl-3">$</span><span class="variables">config</span><span class="require">-></span><span class="variables">serviceUrl</span> <span class="require">= "</span><span class="green">URL</span><span class="require">";</span>
                                         <br>
                                             <span class="pl-3 service">ServicesContainer</span><span class="configure">::configure</span><span class="require">(</span>$<span class="variables">config</span><span class="require">);</span>
@@ -254,31 +250,24 @@
                                         <br>
                                             <span class="pl-3 comments">// Order ID de la transacción original</span>
                                         <br>
-                                            <span class="pl-3">$</span><span class="variables">OrderID</span> <span class="require">= "</span><span class="green">04112019_10-37_SDK_v2-0-0_NWUzODE5ZGItMm</span><span class="require">";</span>
+                                            <span class="pl-3">$</span><span class="variables">orderId</span> <span class="require">= "</span><span class="green">d7070183-7d12-4b24-ba53-0cae952eafa5</span><span class="require">";</span>
                                         <br>
                                         <br>
                                             <span class="pl-3 comments">// Identificador del método de pago</span>
                                         <br>
-                                            <span class="pl-3">$</span><span class="variables">paymentsReference</span> <span class="require">= "</span><span class="green">15728602716967195</span><span class="require">";</span>
+                                            <span class="pl-3">$</span><span class="variables">paymentsReference</span> <span class="require">= "</span><span class="green">15701863476368452</span><span class="require">";</span>
                                         <br>
                                         <br>
-                                            <span class="pl-3 comments">// Código de autorización</span>
+                                            <span class="pl-3 comments">// Creamos el objeto settle</span>
                                         <br>
-                                            <span class="pl-3">$</span><span class="variables">codigoAuth</span> <span class="require">= "</span><span class="green">12345</span><span class="require">";</span>
-                                        <br>
-                                        <br>
-                                            <span class="pl-3 comments">// Creamos el objeto rebate</span>
-                                        <br>
-                                            <span class="pl-3">$</span><span class="variables">transaction</span> <span class="require">=</span> <span class="service">Transaction</span><span class="require">::fromId(</span>$<span class="variables">paymentsReference</span><span class="require">,</span> $<span class="variables">OrderID</span><span class="require">);</span>
-                                        <br>
-                                            <span class="pl-3">$</span><span class="variables">transaction</span><span class="require">-></span><span class="variables">authorizationCode</span> <span class="require">=</span> $<span class="variables">codigoAuth</span><span class="require">;</span>
+                                            <span class="pl-3">$</span><span class="variables">settle</span> <span class="require">=</span> <span class="service">Transaction</span><span class="require">::fromId(</span>$<span class="variables">paymentsReference</span><span class="require">,</span> $<span class="variables">orderId</span><span class="require">);</span>
                                         <br>
                                         <br>
                                             <span class="pl-3 comments">// Lanzamos la petición al servidor de Addon Payments</span>
                                         <br>
                                             <span class="pl-3 new">try</span><span class="require"> {</span>
                                         <br>
-                                            <span class="pl-4">$</span><span class="variables">response</span> <span class="require">=</span> $<span class="variables">transaction</span><span class="require">-></span><span class="configure">refund</span><span class="require">(</span><span class="variables">10</span><span class="require">)</span>
+                                            <span class="pl-4">$</span><span class="variables">response</span> <span class="require">=</span> $<span class="variables">settle</span><span class="require">-></span><span class="configure">capture</span><span class="require">(</span><span class="variables">10</span><span class="require">)</span>
                                         <br>
                                             <span class="pl-5 require">-></span><span class="configure">withCurrency</span><span class="require">("</span><span class="green">EUR</span><span class="require">")</span>
                                         <br>
@@ -344,9 +333,6 @@
                                    <li>
                                        Shared Secret = Contraseña de seguridad del terminal.
                                    </li>
-                                   <li>
-                                       Refund Password = Contraseña de Refund.
-                                   </li>
                                 </ul>
                                 <small class="form-text text-muted alert alert-primary">
                                     --&gt; En caso de que le falte algún dato de los mencionados arriba, debe contactar con su soporte técnico de Addon Payments llamando al teléfono 914 353 028 (opción 2) o enviando un email al correo electrónico <a target="_blank" href="mailto:soporteaddonpayments.com">soporteaddonpayments.com</a>.
@@ -366,13 +352,11 @@
                                         <br>
                                             <span class="pl-3">$</span><span class="variables">config</span><span class="require">-></span><span class="variables">sharedSecret</span> <span class="require">= "</span><span class="green">Shared_Secret</span><span class="require">";</span> <span class="comments">// Contraseña del terminal</span>
                                         <br>
-                                            <span class="pl-3">$</span><span class="variables">config</span><span class="require">-></span><span class="variables">refundPassword</span> <span class="require">= "</span><span class="green">Refund_Password</span><span class="require">";</span> <span class="comments">// Contraseña de Refund</span>
-                                        <br>
                                             <span class="pl-3">$</span><span class="variables">config</span><span class="require">-></span><span class="variables">serviceUrl</span> <span class="require">= "</span><span class="green">URL</span><span class="require">";</span> <span class="comments">// Se debe emplear una de las siguientes URL's:</span>
-                                        <br>
-                                            <span class="pl-5 comments">// Sandbox URL para el entorno de pruebas - <b>https://remote.sandbox.addonpayments.com/remote</b>.</span>
-                                        <br>
-                                            <span class="pl-5 comments">// Live URL para el entorno de producción - <b>https://remote.addonpayments.com/remote</b>.</span>
+                                            <br>
+                                                <span class="pl-5 comments">// Sandbox URL para el entorno de pruebas - <b>https://remote.sandbox.addonpayments.com/remote</b>.</span>
+                                            <br>
+                                                <span class="pl-5 comments">// Live URL para el entorno de producción - <b>https://remote.addonpayments.com/remote</b>.</span>
                                         <br>
                                             <span class="pl-3 service">ServicesContainer</span><span class="configure">::configure</span><span class="require">(</span>$<span class="variables">config</span><span class="require">);</span>
                                         <br>
@@ -390,15 +374,7 @@
                                 </h5>
 
                                     <p>
-                                        Para realizar una devolución, debemos indicar los siguientes datos:
-
-                                        <br>
-                                        <p class="alert alert-primary">
-                                            <small class="text">
-                                                --> Estos datos se facilitan en la respuesta de cada operación.
-                                            </small>
-                                        </p>
-                                        
+                                       Para realizar una liquidación de una preautorización, debemos indicar los siguientes datos:
                                     </p>
 
                                     <ul>
@@ -415,26 +391,15 @@
                                         <br>
 
                                         <li>
-                                            <span class="arrow">$</span><span class="variableBgW">codigoAuth</span> = Código de autorización.
-                                        </li>
-
-                                        <br>
-
-                                        <li>
-                                            Creamos el objeto "rebate" con las referencias que hemos asociado anteriormente:
+                                            Creamos el objeto "settle" con las referencias que hemos asociado anteriormente:
                                         </li>
 
                                         <ul>
                                             <li>
-                                                <span class="arrow">$</span><span class="variableBgW">transaction</span> 
+                                                <span class="arrow">$</span><span class="variableBgW">settle</span> 
                                                 <span class="require">=</span>
                                                 <span class="arrow">Transaction::fromId($</span><span class="variableBgW">paymentsReference</span><span class="arrow">,</span>
-                                                <span class="arrow">$</span><span class="variableBgW">OrderID</span><span class="arrow">);</span>
-                                            </li>
-                                            <li>
-                                                <span class="arrow">$</span><span class="variableBgW">transaction</span> 
-                                                <span class="require">-></span><span class="variableBgW">authorizationCode</span><span class="require">=</span>
-                                                <span class="arrow">$</span><span class="variableBgW">codigoAuth</span><span class="arrow">;</span>
+                                                <span class="arrow">$</span><span class="variableBgW">orderId</span><span class="arrow">);</span>
                                             </li>
                                         </ul>
                                     </ul>
@@ -448,24 +413,17 @@
                                             <br>
                                                 <span class="pl-3 comments">// Order ID de la transacción original</span>
                                             <br>
-                                                <span class="pl-3">$</span><span class="variables">OrderID</span> <span class="require">= "</span><span class="green">04112019_10-37_SDK_v2-0-0_NWUzODE5ZGItMm</span><span class="require">";</span>
+                                                <span class="pl-3">$</span><span class="variables">orderId</span> <span class="require">= "</span><span class="green">d7070183-7d12-4b24-ba53-0cae952eafa5</span><span class="require">";</span>
                                             <br>
                                             <br>
                                                 <span class="pl-3 comments">// Identificador del método de pago</span>
                                             <br>
-                                                <span class="pl-3">$</span><span class="variables">paymentsReference</span> <span class="require">= "</span><span class="green">15728602716967195</span><span class="require">";</span>
+                                                <span class="pl-3">$</span><span class="variables">paymentsReference</span> <span class="require">= "</span><span class="green">15701863476368452</span><span class="require">";</span>
                                             <br>
                                             <br>
-                                                <span class="pl-3 comments">// Código de autorización</span>
+                                                <span class="pl-3 comments">// Creamos el objeto settle</span>
                                             <br>
-                                                <span class="pl-3">$</span><span class="variables">codigoAuth</span> <span class="require">= "</span><span class="green">12345</span><span class="require">";</span>
-                                            <br>
-                                            <br>
-                                                <span class="pl-3 comments">// Creamos el objeto rebate</span>
-                                            <br>
-                                                <span class="pl-3">$</span><span class="variables">transaction</span> <span class="require">=</span> <span class="service">Transaction</span><span class="require">::fromId(</span>$<span class="variables">paymentsReference</span><span class="require">,</span> $<span class="variables">OrderID</span><span class="require">);</span>
-                                            <br>
-                                                <span class="pl-3">$</span><span class="variables">transaction</span><span class="require">-></span><span class="variables">authorizationCode</span> <span class="require">=</span> $<span class="variables">codigoAuth</span><span class="require">;</span>
+                                                <span class="pl-3">$</span><span class="variables">settle</span> <span class="require">=</span> <span class="service">Transaction</span><span class="require">::fromId(</span>$<span class="variables">paymentsReference</span><span class="require">,</span> $<span class="variables">orderId</span><span class="require">);</span>
                                             <br>
                                             <br>
                                             <b>
@@ -477,7 +435,7 @@
                                 <hr>
 
                                 <h5 id="envioOP" class="mt-3">
-                                    2.3 Envío de la petición Rebate
+                                    2.3 Envío de la petición Settle
                                 </h5>
 
                                 <p>
@@ -489,13 +447,13 @@
 
                                 <ul>
                                     <li>
-                                        Indicamos el importe que queremos devolver de la transacción original:
+                                        Indicamos el importe que queremos liquidar de la transacción original:
                                         <ul>
                                             <li>
                                                 <span class="arrow">$</span><span class="variableBgW">response</span>
                                                 <span class="arrow">=</span>
-                                                <span class="arrow">$</span><span class="variableBgW">transaction</span>
-                                                <span class="arrow">->refund(</span><span class="variableBgW">10</span><span class="arrow">)</span>
+                                                <span class="arrow">$</span><span class="variableBgW">settle</span>
+                                                <span class="arrow">->capture(</span><span class="variableBgW">10</span><span class="arrow">)</span>
                                             </li>
                                         </ul>
                                     </li>
@@ -503,7 +461,7 @@
                                     <br>
 
                                     <li>
-                                        Debemos indicar la moneda de liquidación de la operación original:
+                                        Debemos indicar la moneda de liquidación:
                                         <ul>
                                             <li>
                                                 <span class="arrow">->withCurrency(</span><span class="comentariosBgW">"EUR"</span><span class="arrow">)</span>
@@ -535,7 +493,7 @@
                                         <br>
                                             <span class="pl-3 new">try</span><span class="require"> {</span>
                                         <br>
-                                            <span class="pl-4">$</span><span class="variables">response</span> <span class="require">=</span> $<span class="variables">transaction</span><span class="require">-></span><span class="configure">refund</span><span class="require">(</span><span class="variables">10</span><span class="require">)</span>
+                                            <span class="pl-4">$</span><span class="variables">response</span> <span class="require">=</span> $<span class="variables">settle</span><span class="require">-></span><span class="configure">capture</span><span class="require">(</span><span class="variables">10</span><span class="require">)</span>
                                         <br>
                                             <span class="pl-5 require">-></span><span class="configure">withCurrency</span><span class="require">("</span><span class="green">EUR</span><span class="require">")</span>
                                         <br>
@@ -591,7 +549,7 @@
                                 <hr>
 
                                 <p>
-                                    Para editar una tarjeta con el formulario de ejemplo, debe modificar el archivo "rebate.php" que se encuentra en la ruta "vendor\addonpayments\php-sdk\test\php\API\03 - Gestión de transacciones\02 - Rebate".
+                                    Para editar una tarjeta con el formulario de ejemplo, debe modificar el archivo "settle.php" que se encuentra en la ruta "vendor\addonpayments\php-sdk\test\php\API\03 - Gestión de transacciones\01 - Capturar".
                                 </p>
                                 <p>
                                     Debe introducir sus datos de configuración tal y como se muestra en el punto 2.1 de esta guía.
@@ -601,20 +559,20 @@
                                 <h5 id="Formulario" class="mt-3">3.1 Formulario</h5>
 
                                 <p>
-                                    El siguiente formulario le permite realizar una devolución sobre una operación preautorizada en entorno de pruebas. Puede acceder al panel de administración ingresando en la siguiente URL e introduciendo sus datos de inicio de sesión:
+                                    El siguiente formulario le permite realizar una liquidación sobre una operación preautorizada en entorno de pruebas. Puede acceder al panel de administración ingresando en la siguiente URL e introduciendo sus datos de inicio de sesión:
                                     <ul>
                                          <li><a target="_blank" href="https://admin.sandbox.addonpayments.com">https://admin.sandbox.addonpayments.com.</a></li>
                                     </ul>
                                 </p>
 
-                                <form id="formulario_envio" method="POST" autocomplete="off" class="col-lg-12" action="rebate.php">
+                                <form id="formulario_envio" method="POST" autocomplete="off" class="col-lg-12" action="settle.php">
                                     <div class="row justify-content-around">
                                         <div class="col-lg-4 pl-lg-4">
                                             <div class="row">
                                                 <div class="col-lg-12 mt-2 mb-2 formulario">
                                                     <!-- Datos de tarjeta -->
 
-                                                    <h4 class="pt-2">Rebate</h4>
+                                                    <h4 class="pt-2">Settle</h4>
 
                                                     <div class="form-group">
                                                         <label for="orderid">Order ID</label>
@@ -625,10 +583,6 @@
                                                         <input type="text" class="form-control" id="pasref" name="pasref" placeholder="Pasref" required/>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="authCode">Código de autorización</label>
-                                                        <input type="text" class="form-control" id="authCode" name="authCode" placeholder="000000" value="000000" required/>
-                                                    </div>
-                                                    <div class="form-group">
                                                         <p>
                                                             <b>Importe:</b> 10,00€
                                                             <input type="hidden" name="importe" value="10,00">
@@ -636,7 +590,7 @@
                                                     </div>
                                                     <div class="form-group row">
                                                         <div class="col-sm-12">
-                                                            <button type="submit" class="btn btn-block btn-primary">Devolver importe</button>
+                                                            <button type="submit" class="btn btn-block btn-primary">Cobrar importe</button>
                                                         </div>
                                                     </div>
                                                 </div>
