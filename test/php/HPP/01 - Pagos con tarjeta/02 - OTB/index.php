@@ -149,6 +149,7 @@
                             <hr class="m-0 p-0">
                                 <a class="dropdown-item pl-2" href="../../05%20-%203DS2/01%20-%20Authorization/index.html">Autorización</a>
                                 <a class="dropdown-item pl-2" href="../../05%20-%203DS2/02%20-%20Datos%20adicionales/index.html">Datos adicionales</a>
+                                <a class="dropdown-item pl-2" href="../../05%20-%203DS2/03%20-%20OTB/index.php">OTB con 3DS2</a>
                         </div>
                    </li>
               </ul>
@@ -397,9 +398,9 @@
                         </p>
                         <ul>
                             <li>
-                                Llamamos al objeto "$hppJson" e indicamos el importe que queremos cargar: 
+                                Llamamos al objeto "$hppJson" e indicamos que queremos verificar la tarjeta: 
                                 <span class="arrow">$</span><span class="variableBgW">service</span>
-                                <span class="arrow">->charge(</span><span class="variableBgW">20</span><span class="arrow">)</span>
+                                <span class="arrow">->verify()</span>
                             </li>
 
                             <br>
@@ -534,7 +535,7 @@
                     </p>
 
                     <p>
-                        Debe introducir sus datos de configuración tal y como se muestra en el punto 2.1 "Configuración del terminal".
+                        Debe introducir sus datos de configuración tal y como se muestra en el punto 2.2 "Configuración del terminal".
                     </p>
 
                     <hr>
