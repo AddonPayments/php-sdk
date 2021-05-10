@@ -92,13 +92,6 @@ Amex        | 374101000000608  | 12        | 2025     | 1234
 JCB         | 3566000000000000 | 12        | 2025     | 123
 Diners Club | 36256000000725   | 12        | 2025     | 123
 
-#### Tarjetas de prueba para 3DS2
-
-Tipo              | Número           | Exp Mes   | Exp Año  | CVN
-------------------| ---------------- | --------- | -------- | ----
-Frictionless      | 4263970000005262 | 12        | 2025     | 123
-Challenge Required| 4012001038488884 | 12        | 2025     | 123
-
 #### Excepciones
 
 Durante su integración usted podrá probar las respuestas específicas del emisor tales como "Tarjeta Rechazada".
