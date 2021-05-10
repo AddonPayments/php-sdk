@@ -147,6 +147,7 @@
                             <hr class="m-0 p-0">
                                 <a class="dropdown-item pl-2" href="HPP/05%20-%203DS2/01%20-%20Authorization/index.html">Autorización</a>
                                 <a class="dropdown-item pl-2" href="HPP/05%20-%203DS2/02%20-%20Datos%20adicionales/index.html">Datos adicionales</a>
+                                <a class="dropdown-item pl-2" href="HPP/05%20-%203DS2/03%20-%20OTB/index.php">OTB con 3DS2</a>
                         </div>
                     </li>
                 </ul>
